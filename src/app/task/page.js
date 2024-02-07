@@ -52,7 +52,7 @@ const page = () => {
                       <div className='w-[100%]'>
                         
                         <label>Enter title</label> <br/>
-                        <input placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-black h-8 sm:h-10' onChange={(e)=>{
+                        <input placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               title:e.target.value
@@ -66,7 +66,7 @@ const page = () => {
                               ...taskData, 
                               content:e.target.value
                             })
-                        }} value={taskData.content} className='border w-[100%] px-2 bg-[#272727] text-black h-8 sm:h-10' type='text'/> <br/><br/>
+                        }} value={taskData.content} className='border w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' type='text'/> <br/><br/>
                       </div>
                       <div>
                         <label>Status</label> <br/>
