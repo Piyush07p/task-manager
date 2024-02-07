@@ -31,3 +31,18 @@ export const DELETE=async (request,{params})=>{
             })
         }
 }
+
+export const PUT=async(request,{params})=>{
+    try {
+
+        const updated=await taskModel.findByIdAndUpdate(params.taskId,{status:'completed'});  
+        return NextResponse.json({
+            msg:"task updated"
+        })
+    } catch (error) {
+          console.log("updateTaskapiErr--> ",error)
+          return NextResponse.json({
+            Error:error
+          })
+    }
+}

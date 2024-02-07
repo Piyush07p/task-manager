@@ -43,7 +43,7 @@ const page = () => {
     <>
         <section className='p-2 flex flex-col items-center  '>
             <ToastContainer />
-              <div className=' mt-3 border' >
+              <div className=' mt-3 ' >
                 <Image alt='image' className='w-[13rem] sm:w-[20rem]' src={svg}/>
               </div>
               <div className=' p-4 w-[80%] sm:w-[60%] md:w-[50%]  my-2 text-black'>
@@ -52,7 +52,7 @@ const page = () => {
                       <div className='w-[100%]'>
                         
                         <label>Enter title</label> <br/>
-                        <input placeholder='enter title' className=' w-[100%] text-black h-8 sm:h-10' onChange={(e)=>{
+                        <input placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-black h-8 sm:h-10' onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               title:e.target.value
@@ -66,23 +66,23 @@ const page = () => {
                               ...taskData, 
                               content:e.target.value
                             })
-                        }} value={taskData.content} className='border w-[100%] text-black h-8 sm:h-10' type='text'/> <br/><br/>
+                        }} value={taskData.content} className='border w-[100%] px-2 bg-[#272727] text-black h-8 sm:h-10' type='text'/> <br/><br/>
                       </div>
                       <div>
                         <label>Status</label> <br/>
-                        <select   placeholder='enter status'  onChange={(e)=>{
+                        <select   placeholder='enter status'   onChange={(e)=>{
                               setTaskData({
                                 ...taskData, 
                                 status:e.target.value
                               })
-                          }} value={taskData.status} className='border w-[100%] h-8 sm:h-10 text-black'  type='text'> 
+                          }} value={taskData.status} className='border w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
                           <option>Choose</option>
                           <option>pending</option>
                           <option>completed</option>
                         </select>
                       </div>
                       <div>
-                         <button className='bg-[#731273] py-1 px-2 my-3 rounded-sm text-white' onClick={handleAddTask} >Add Task</button>
+                         <button className='bg-[#731273] py-1 px-2 my-4 rounded-sm text-white' onClick={handleAddTask} >Add Task</button>
                       </div>
                  </form>
                

@@ -29,8 +29,16 @@ export async function getTaskList(userId){
 export async function deleteTask(taskId){
   console.log("taskServicedetlet-->", taskId)
     const result= await httpAxios
-    .delete(`api/tasks/${taskId}`)
+    .delete(`/api/tasks/${taskId}`)
     .then((resp)=>resp.data);
     return result;
+
+}
+
+export async function updateTask(task_id){
+     const result=await httpAxios
+     .put(`/api/tasks/${task_id}`)
+     .then((resp)=>resp.data);
+     return result;
 
 }

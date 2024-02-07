@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
-import { deleteTask, getTaskList } from '@/services/taskService'
+import { deleteTask, getTaskList, updateTask } from '@/services/taskService'
 import UserContext from '@/context/userContext'
 import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
@@ -33,20 +33,35 @@ const page = () => {
         toast.error("Error in deletin the task !!");
        }
   }
-
+ async function updateTaskFunc(task_id){
+      try {
+        const resp= await updateTask(task_id)
+        window.location.reload()
+      } catch (error) {
+        console.log("update_task_err--> ",error)
+      }
+ }
   useEffect(()=>{
   
    if(context.currUser){
     console.log("context-->" , context.currUser)
     loadTaskfunc(context.currUser._id);
-    
+   
    }
   },[context.currUser])
+  function completedTask(){
+    return taskList.filter((elem)=>elem.status==="completed").length
+    
+  }
   return (
     <>
-      <section className='h-[100vh] flex flex-col'>
+      <section className='p-3flex flex-col'>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
-          <h2 className='text-center border w-[10rem] p-2 mx-10 my-3'>You have {taskList.length} tasks</h2>
+          <div className='flex justify-center '>
+            <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
+            <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
+          </div>
+
           <div className='flex flex-col items-center justify-center'>
             <ToastContainer/>
               {
@@ -54,17 +69,19 @@ const page = () => {
                   return(
                     <>
                        <div className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
-                          <div className='flex justify-between text-[0.7rem] md:text-[1rem]'>
+                          <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2'>{task.title}</h1>
                            <span className='text-white cursor-pointer' onClick={()=>{
                              deleteTaskFunc(task._id)
                             
                            }}>
+                            
                             <RxCross2/>
                            </span>
                           </div>
                           <p className='text-[0.7rem] md:text-[1rem]'>{task.content}</p>
-                          <p className={`text-right text-[0.7rem] md:text-[1rem]  ${task.status==="completed"?"text-green-600":"text-red-600"}`}>Status: {task.status}</p>
+                          <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="completed"?"text-green-600":"text-red-600"}`}>Status: {task.status}</p>
+                          <button onClick={()=>updateTaskFunc(task._id)} className='text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Mark as completed</button>
                        </div>
                     </>
                   )
