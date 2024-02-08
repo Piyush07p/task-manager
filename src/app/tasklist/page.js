@@ -5,6 +5,7 @@ import UserContext from '@/context/userContext'
 import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const page = () => {
   const context=useContext(UserContext);
@@ -63,25 +64,35 @@ const page = () => {
           </div>
 
           <div className='flex flex-col items-center justify-center'>
-            <ToastContainer/>
+            <ToastContainer/>  
+         
               {
-                taskList.map((task)=>{
+                (taskList.length===0)
+                ?
+                 <div className='h-[55vh] flex items-center'>
+                      <ScaleLoader color="#731273" size={20} /> 
+                 </div>
+                :taskList.map((task)=>{
                   return(
                     <>
                        <div className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2'>{task.title}</h1>
-                           <span className='text-white cursor-pointer' onClick={()=>{
-                             deleteTaskFunc(task._id)
-                            
-                           }}>
-                            
-                            <RxCross2/>
-                           </span>
+                          
+                            <span className='text-white cursor-pointer' onClick={()=>{
+                              deleteTaskFunc(task._id)
+                              
+                            }}>
+                              
+                              <RxCross2/>
+                            </span>
                           </div>
                           <p className='text-[0.7rem] md:text-[1rem]'>{task.content}</p>
                           <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="completed"?"text-green-600":"text-red-600"}`}>Status: {task.status}</p>
-                          <button onClick={()=>updateTaskFunc(task._id)} className='text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Mark as completed</button>
+                          <h1>
+                            <button onClick={()=>updateTaskFunc(task._id)} className='text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Mark as completed</button>
+                            <p className='text-right text-[0.5rem] sm:text-[0.7rem]'>{task.dateAdded}</p>
+                          </h1>
                        </div>
                     </>
                   )

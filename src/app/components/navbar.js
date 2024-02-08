@@ -29,7 +29,7 @@ const Navbar = () => {
         <nav className='flex items-center justify-between p-2 box-border bg-[#731273] w-[100%]'>
           
             <div className='flex items-center'>
-               <p className='text-[0.8rem] sm:text-[1.2rem]'>Tasks <span className='text-green-600'>x</span></p>
+               <p className='text-[0.8rem] sm:text-[1.2rem]'>TASKS</p>
             </div>
             <div>
                 <ul className='flex items-center  m-2'>

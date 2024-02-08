@@ -6,6 +6,7 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
 
 
+
 export async function POST(request){
 
       const {email,password}=await request.json();
@@ -28,7 +29,10 @@ export async function POST(request){
           _id:userData._id,
           name:userData.name
         },
-          process.env.JWT_KEY
+          process.env.JWT_KEY,
+          {
+            expiresIn:"2d"
+          }
         );
 
         console.log("loginApi--->",token)

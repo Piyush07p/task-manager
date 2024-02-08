@@ -66,7 +66,7 @@ const page = () => {
                               ...taskData, 
                               content:e.target.value
                             })
-                        }} value={taskData.content} className='border w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' type='text'/> <br/><br/>
+                        }} value={taskData.content} className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' type='text'/> <br/><br/>
                       </div>
                       <div>
                         <label>Status</label> <br/>
@@ -75,7 +75,7 @@ const page = () => {
                                 ...taskData, 
                                 status:e.target.value
                               })
-                          }} value={taskData.status} className='border w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
+                          }} value={taskData.status} className=' w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
                           <option>Choose</option>
                           <option>pending</option>
                           <option>completed</option>

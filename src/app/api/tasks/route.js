@@ -20,6 +20,8 @@ export const POST= async(request)=>{
                 content:content, 
                 status:status,
                 userId:data._id
+            },{
+                timestamps:true
             })
 
             console.log("inside Taskapi--->",task)

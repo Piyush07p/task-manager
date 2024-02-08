@@ -4,7 +4,7 @@ import { loginUser } from '@/services/userService'
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
-
+import PuffLoader from "react-spinners/PuffLoader";
 const page = () => {
    const router=useRouter()
   const [loginData,setLoginData]=useState({
@@ -38,6 +38,7 @@ const page = () => {
     <>
         <section className='flex justify-center items-center h-[100vh] p-10'>
           <ToastContainer/>
+           
             <form method='POST' className=' w-[90%] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[15.5rem] md:h-[17rem]' >
 
                     <div>
