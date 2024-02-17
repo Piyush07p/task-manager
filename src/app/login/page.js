@@ -7,10 +7,12 @@ import { useRouter } from 'next/navigation';
 import PuffLoader from "react-spinners/PuffLoader";
 const page = () => {
    const router=useRouter()
+
   const [loginData,setLoginData]=useState({
     email:"",
     password:""
   });
+
   async function handleLogin(e){
     e.preventDefault();
     try {
@@ -21,24 +23,22 @@ const page = () => {
       toast.success("Login success",{
         position: 'top-center',
       })
-      router.push('/profile')
+      router.push('/')
       console.log("loginpage--> ",resp)
-    } catch (error) {
+    } 
+    catch (error) {
       toast.error("Invalid credentails",{
         position: "top-center",
       })
-      // setLoginData({
-      //   email:"",
-      //   password:""
-      // })
     }
+
   }
 
   return (
     <>
         <section className='flex justify-center items-center h-[100vh] p-10'>
           <ToastContainer/>
-           
+          
             <form method='POST' className=' w-[90%] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[15.5rem] md:h-[17rem]' >
 
                     <div>
@@ -63,6 +63,8 @@ const page = () => {
 
                   
             </form>
+            
+
 
      </section>
     

@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 const ContextProvider = ({children}) => {
     const [currUser,setCurrUser]=useState("");
     const [activeData,setActiveData]=useState("")
+    const [taskId,setTaskid]=useState("")
+    const [hidePopup,setHidePopup]=useState(false)
    useEffect(()=>{
     async function loadUser(){
       
@@ -22,7 +24,7 @@ const ContextProvider = ({children}) => {
     }
     loadUser()
    },[])
-  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData}}>
+  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup}}>
        {children}
   </UserContext.Provider>
 }

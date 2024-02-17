@@ -6,10 +6,10 @@ import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScaleLoader from "react-spinners/ScaleLoader";
-
+import  Update  from '../components/update';
 const page = () => {
   const context=useContext(UserContext);
-  const {activeData,setActiveData}=useContext(UserContext)
+  const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup}=useContext(UserContext)
   const [taskList,setTaskList]=useState([])
   
   // function that loads tasks
@@ -31,7 +31,7 @@ const page = () => {
         toast.success("task deleted successfully !!")
        } catch (error) {
         console.log(error)
-        toast.error("Error in deletin the task !!");
+        toast.error("Error in deletion the task !!");
        }
   }
  async function updateTaskFunc(task_id){
@@ -54,8 +54,18 @@ const page = () => {
     return taskList.filter((elem)=>elem.status==="completed").length
     
   }
+  
+  
+  function editTaskFunc(task_id){
+    setHidePopup(true)
+    setTaskid(task_id)
+    
+  }
   return (
     <>
+    {
+      (hidePopup)?<Update/>:""
+    }
       <section className='p-3flex flex-col'>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
           <div className='flex justify-center '>
@@ -78,11 +88,14 @@ const page = () => {
                        <div className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2'>{task.title}</h1>
-                          
+                           <span>
+                           <button onClick={()=>editTaskFunc(task._id)} className=' inline text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Edit</button>
+                           </span>
                             <span className='text-white cursor-pointer' onClick={()=>{
                               deleteTaskFunc(task._id)
                               
                             }}>
+                             
                               
                               <RxCross2/>
                             </span>

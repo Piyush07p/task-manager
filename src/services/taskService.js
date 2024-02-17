@@ -42,3 +42,10 @@ export async function updateTask(task_id){
      return result;
 
 }
+
+export async function editTask(task_id,editData){
+   const result=await httpAxios
+   .put(`api/tasks/updateTask/${task_id}`,editData)
+   .then((resp)=>resp.data)
+   return result;
+}
