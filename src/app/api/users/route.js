@@ -26,7 +26,7 @@ export  async function POST(request){
     
     } catch (error) {
         return NextResponse.json({
-            msg:error
+            msg:error.message
         })
     }
 }

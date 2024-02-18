@@ -11,7 +11,7 @@ export function middleware(request){
     // console.log("middleware called..")   
     if(notAccessRoute){
         if(authToken){
-            return NextResponse.redirect(new URL('/profile',request.url));
+            return NextResponse.redirect(new URL('/',request.url));
         }
     }else{
         if(!authToken){
