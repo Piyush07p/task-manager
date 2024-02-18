@@ -9,7 +9,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import  Update  from '../components/update';
 const page = () => {
   const context=useContext(UserContext);
-  const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup}=useContext(UserContext)
+  const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead}=useContext(UserContext)
   const [taskList,setTaskList]=useState([])
   
   // function that loads tasks
@@ -34,9 +34,11 @@ const page = () => {
         toast.error("Error in deletion the task !!");
        }
   }
+
  async function updateTaskFunc(task_id){
       try {
         const resp= await updateTask(task_id)
+        setMarkAsRead(prevState=>!prevState)
         window.location.reload()
       } catch (error) {
         console.log("update_task_err--> ",error)
@@ -87,25 +89,25 @@ const page = () => {
                     <>
                        <div className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
-                           <h1 className=' my-2'>{task.title}</h1>
-                           <span>
-                           <button onClick={()=>editTaskFunc(task._id)} className=' inline text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Edit</button>
-                           </span>
-                            <span className='text-white cursor-pointer' onClick={()=>{
-                              deleteTaskFunc(task._id)
-                              
-                            }}>
-                             
-                              
-                              <RxCross2/>
-                            </span>
+                           <h1 className=' my-2 underline font-bold'>{task.title}</h1>
+                           <p className='flex items-center'>
+                              <span className='mr-4'>
+                                <button onClick={()=>editTaskFunc(task._id)} className=' inline text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer py-1 px-2'>Edit</button>
+                              </span>
+                              <span className='text-white cursor-pointer' onClick={()=>{
+                                  deleteTaskFunc(task._id)
+                                  
+                                }}>
+                                <RxCross2/>
+                              </span>
+                           </p>
                           </div>
-                          <p className='text-[0.7rem] md:text-[1rem]'>{task.content}</p>
+                          <p className='text-[0.7rem] md:text-[1rem] whitespace-pre-wrap'>{task.content}</p>
                           <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="completed"?"text-green-600":"text-red-600"}`}>Status: {task.status}</p>
-                          <h1>
-                            <button onClick={()=>updateTaskFunc(task._id)} className='text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer p-1'>Mark as completed</button>
+                          <div className='flex items-center justify-between'>
+                            <button onClick={()=>updateTaskFunc(task._id)} className={`text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 ${markasRead?" bg-green-900 ":"bg-green-600 "} rounded cursor-pointer p-1`}>Mark as completed</button>
                             <p className='text-right text-[0.5rem] sm:text-[0.7rem]'>{task.dateAdded}</p>
-                          </h1>
+                          </div>
                        </div>
                     </>
                   )
