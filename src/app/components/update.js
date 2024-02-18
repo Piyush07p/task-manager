@@ -9,14 +9,14 @@ const Update = () => {
 
      console.log("props-->",taskId)
     const [udpateData,setUpdateData]=useState({
-        title:"",
-        description:""
+        title:taskId.task_title,
+        description:taskId.task_content
     })
     const updateData=async (e)=>{
         e.preventDefault();
         setHidePopup(false)
         try {
-             let resp=await editTask(taskId,udpateData);
+             let resp=await editTask(taskId.task_id,udpateData);
              window.location.reload()
         } catch (error) {
            console.log(error) 
@@ -40,7 +40,7 @@ const Update = () => {
                 setUpdateData({
                     ...udpateData,description:e.target.value
                 })
-            }} className=' bg-[#272727] w-[90%]  px-2 md:w-[90%] h-[5rem]'  name='description' type="text" placeholder='edit description'></textarea> <br/><br/>
+            }} className=' bg-[#272727] w-[90%]  px-2 md:w-[90%] h-[5rem]' value={udpateData.description}  name='description' type="text" placeholder='edit description'></textarea> <br/><br/>
             <button onClick={updateData} className='bg-green-600 hover:bg-green-700 p-1 rounded-sm mr-2'>Update</button>
             <button onClick={cancelPopup} className='bg-green-600  hover:bg-green-700 p-1 rounded-sm'>Cancel</button>
 

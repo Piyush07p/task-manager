@@ -8,10 +8,10 @@ export  async function GET(request,{params}){
     const {userId}=params;
     try {
         await createDb();
-        const users=await taskModel.find({
+        const tasks=await taskModel.find({
             userId:userId,  
         });
-        return NextResponse.json(users)
+        return NextResponse.json(tasks)
     } catch (error) {
         console.log(error) 
         return NextResponse.json({

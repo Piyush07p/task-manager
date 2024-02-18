@@ -52,15 +52,18 @@ const page = () => {
    
    }
   },[context.currUser])
+
   function completedTask(){
     return taskList.filter((elem)=>elem.status==="completed").length
     
   }
   
   
-  function editTaskFunc(task_id){
+  function editTaskFunc(task_id,task_title,task_content){
     setHidePopup(true)
-    setTaskid(task_id)
+    setTaskid({
+      task_id,task_title,task_content
+    })
     
   }
   return (
@@ -92,7 +95,7 @@ const page = () => {
                            <h1 className=' my-2 underline font-bold'>{task.title}</h1>
                            <p className='flex items-center'>
                               <span className='mr-4'>
-                                <button onClick={()=>editTaskFunc(task._id)} className=' inline text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer py-1 px-2'>Edit</button>
+                                <button onClick={()=>editTaskFunc(task._id,task.title,task.content)} className=' inline text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded cursor-pointer py-1 px-2'>Edit</button>
                               </span>
                               <span className='text-white cursor-pointer' onClick={()=>{
                                   deleteTaskFunc(task._id)
