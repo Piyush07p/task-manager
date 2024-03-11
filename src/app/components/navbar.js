@@ -36,9 +36,9 @@ const Navbar = () => {
                         <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                             <Link href="/">Home</Link>
                         </li>
-                        <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
+                        {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
-                        </li>
+                        </li> */}
                         <li className='mx-1  sm:mx-2 text-[0.6rem] sm:text-[1rem]  '>
                             <Link href="/tasklist">Show task</Link>
                         </li>
