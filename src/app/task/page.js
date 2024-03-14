@@ -61,12 +61,12 @@ const page = () => {
                       </div>
                       <div>
                         <label>Enter description</label> <br/>
-                        <textarea  placeholder='enter description'  onChange={(e)=>{
+                        <textarea   placeholder='enter description'  onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               content:e.target.value
                             })
-                        }} value={taskData.content} className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' type='text'></textarea> <br/><br/>
+                        }} value={taskData.content} className=' w-[100%] px-2 bg-[#272727] text-white h-[6.5rem] sm:h-[5.5rem]  ' type='text'></textarea> <br/><br/>
                       </div>
                       <div>
                         <label>Status</label> <br/>

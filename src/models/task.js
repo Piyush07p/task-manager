@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+import moment from "moment";
 const taskSchema=new mongoose.Schema({
     title:{
         type:String,
@@ -10,9 +10,8 @@ const taskSchema=new mongoose.Schema({
         required:true,
     },
     dateAdded:{
-        type:Date,
-        required:true,
-        default:Date.now(),
+        type:String,
+        default:moment().format('MMMM Do YYYY, h:mm:ss a')
     },
     status:{
         type:String,

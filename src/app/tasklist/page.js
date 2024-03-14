@@ -7,6 +7,10 @@ import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import  Update  from '../components/update';
+import moment from 'moment';
+import Link from 'next/link';
+
+
 const page = () => {
   const context=useContext(UserContext);
   const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead}=useContext(UserContext)
@@ -77,10 +81,20 @@ const page = () => {
             <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
             <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
           </div>
-
-          <div className='flex flex-col items-center justify-center'>
-            <ToastContainer/>  
-         
+          <ToastContainer/>  
+          <div className='flex flex-col  items-center  justify-center'>
+            
+               <div className='w-[85%]  md:w-[60%] flex justify-between items-center '>
+                <span className= 'text-[0.8rem] md:text-[1rem] border p-1'>
+                {moment().format('MMMM Do YYYY')}
+                </span>
+                
+                  <button className=" p-1 text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded ">
+                     <Link href="/task">Add more tasks</Link>
+                  </button>
+                
+               </div>
+            
               {
                 (taskList.length===0)
                 ?
