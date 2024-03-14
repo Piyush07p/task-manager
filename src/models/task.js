@@ -3,11 +3,11 @@ import moment from "moment";
 const taskSchema=new mongoose.Schema({
     title:{
         type:String,
-        required:true,
+        
     },
     content:{
         type:String,
-        required:true,
+
     },
     dateAdded:{
         type:String,
@@ -20,7 +20,7 @@ const taskSchema=new mongoose.Schema({
     },
     userId:{
         type:String,
-        required:true,
+        // required:true,
     }
 })
 mongoose.models={};

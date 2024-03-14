@@ -4,7 +4,8 @@ import { loginUser } from '@/services/userService'
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
-import PuffLoader from "react-spinners/PuffLoader";
+
+import { ClipLoader } from 'react-spinners';
 const page = () => {
    const router=useRouter()
 
@@ -12,12 +13,14 @@ const page = () => {
     email:"",
     password:""
   });
-
+const [loginLoader,setLoginLoader]=useState(false)
   async function handleLogin(e){
     e.preventDefault();
+    setLoginLoader(true)
     try {
       let resp=await loginUser(loginData);
       if(!resp.success){
+       setLoginLoader(false)
         throw new Error("Invalid credentails !!")
       }
       toast.success("Login success",{
@@ -59,7 +62,11 @@ const page = () => {
                         }} className='w-[90%]  text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type="password" />
                     </div>
 
-                    <button onClick={handleLogin} className='bg-[#731273] rounded-md my-8 w-20 hover:bg-black hover:border  p-1'>Submit</button>
+                    <button onClick={handleLogin} className='bg-[#731273] rounded-md my-8 w-20 hover:bg-black hover:border  p-1'>
+                    {
+                      (loginLoader)?<ClipLoader color="#fff" size={22} />: "Submit"
+                    }
+                      </button>
 
                   
             </form>

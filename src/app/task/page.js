@@ -6,6 +6,7 @@ import svg from '../assets/taskImage.svg'
 import { addTask } from '@/services/taskService';
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { ClipLoader } from 'react-spinners';
 
 const page = () => {
    const [taskData,setTaskData]=useState({
@@ -15,12 +16,17 @@ const page = () => {
           userId:"65bfe15b4e8941ff6607ef12"
 
    })
+
+   const [taskLoader,setTaskLoader]=useState(false)
    const handleAddTask=async(event)=>{
         event.preventDefault();
+        setTaskLoader(true)
         try {
+             
             const res=await addTask(taskData)
-            console.log("taskfile-->",res) 
-           if(res!=null){
+      
+           if(res){
+            setTaskLoader(false)
             toast.success("task added",{
               position:'top-center'
             })
@@ -52,7 +58,7 @@ const page = () => {
                       <div className='w-[100%]'>
                         
                         <label>Enter title</label> <br/>
-                        <input placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' onChange={(e)=>{
+                        <input required  placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               title:e.target.value
@@ -70,19 +76,24 @@ const page = () => {
                       </div>
                       <div>
                         <label>Status</label> <br/>
-                        <select   placeholder='enter status'   onChange={(e)=>{
+                        <select required   placeholder='enter status'   onChange={(e)=>{
                               setTaskData({
                                 ...taskData, 
                                 status:e.target.value
                               })
                           }} value={taskData.status} className=' w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
-                          <option>Choose</option>
+                          <option >Choose</option>
                           <option>pending</option>
                           <option>completed</option>
                         </select>
                       </div>
                       <div>
-                         <button className='bg-[#731273] py-1 px-2 my-4 rounded-sm text-white' onClick={handleAddTask} >Add Task</button>
+
+                         <button type='submit' className='bg-[#731273] w-[6rem] py-1 px-2 my-4 rounded-sm text-white' onClick={handleAddTask}>
+                         {
+                           (taskLoader)? <ClipLoader color="#fff" size={22} />:"Add Task"
+                         }
+                          </button>
                       </div>
                  </form>
                
