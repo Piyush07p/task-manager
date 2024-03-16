@@ -23,6 +23,7 @@ const [loginLoader,setLoginLoader]=useState(false)
        setLoginLoader(false)
         throw new Error("Invalid credentails !!")
       }
+      setLoginLoader(false)
       toast.success("Login success",{
         position: 'top-center',
       })

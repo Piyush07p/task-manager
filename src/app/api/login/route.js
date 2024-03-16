@@ -43,7 +43,7 @@ export async function POST(request){
         })
 
         response.cookies.set("loginToken",token,{
-          expiresIn:"1d",
+          expiresIn:"2d",
           httpOnly:true
         });
 

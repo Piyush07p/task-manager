@@ -4,13 +4,16 @@ export function middleware(request){
     const authToken=request.cookies.get('loginToken')?.value;
 
     if(request.nextUrl.pathname==='/api/login'|| request.nextUrl.pathname==='/api/users'){
-        return
+        return 
     }
     
     const notAccessRoute= request.nextUrl.pathname==='/login'||request.nextUrl.pathname==='/Signup';
     // console.log("middleware called..")   
     if(notAccessRoute){
+
+        console.log("inside notAccessRoute")
         if(authToken){
+            console.log("inside loger")
             return NextResponse.redirect(new URL('/',request.url));
         }
     }else{
@@ -23,7 +26,7 @@ export function middleware(request){
                 {
                     status:401,
                 }
-
+    
                 );
             }
             return NextResponse.redirect(new URL('/login',request.url));
@@ -37,7 +40,6 @@ export const config={
         '/',
         '/login',
         '/Signup',
-        '/profile',
         '/task',
         '/tasklist',
         '/profile/:path*',

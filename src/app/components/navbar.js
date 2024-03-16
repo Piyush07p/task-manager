@@ -6,15 +6,18 @@ import UserContext from '@/context/userContext'
 import { logoutUser } from '@/services/userService'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation'
 
 
 const Navbar = () => {
-    const context=useContext(UserContext)
+   const context=useContext(UserContext)
+   const router=useRouter()
    async function doLogout(){
        
     try {
         const result =await logoutUser()
         context.setCurrUser(undefined)
+        router.push('/login')
         // toast.success("logout successfull !!")
     } catch (error) {
         console.log(error);
@@ -22,6 +25,7 @@ const Navbar = () => {
     }
 
     }
+    
    
   return (
     <>
@@ -49,7 +53,7 @@ const Navbar = () => {
                             <Link href="/profile">{JSON.parse(localStorage.getItem("userName"))}</Link>
                             </li>
                             <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]   shadow-sm  bg-gray-900 px-2 rounded-md py-1'>
-                            <Link href={'/login'} onClick={doLogout}>logout</Link>
+                            <button  onClick={doLogout}>logout</button>
                             </li>
                            </>
                            :
