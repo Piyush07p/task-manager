@@ -35,6 +35,14 @@ export async function deleteTask(taskId){
 
 }
 
+export async function deleteAllTask(userId){
+     console.log(userId)
+     const result=await httpAxios
+     .delete(`/api/tasks/deleteAll/${userId}`)
+     .then((resp)=>resp.data);
+     return result;
+}
+
 export async function updateTask(task_id){
      const result=await httpAxios
      .put(`/api/tasks/${task_id}`)

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from "next/image"; 
-import svg from '../assets/taskImage.svg'
+import svg from '../assets/taskpageImg.svg'
 import { addTask } from '@/services/taskService';
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';

@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
-import { deleteTask, getTaskList, updateTask } from '@/services/taskService'
+import { deleteTask, getTaskList, updateTask,deleteAllTask} from '@/services/taskService'
 import UserContext from '@/context/userContext'
 import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
@@ -9,6 +9,8 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import  Update  from '../components/update';
 import moment from 'moment';
 import Link from 'next/link';
+import { ClipLoader } from 'react-spinners';
+
 
 
 const page = () => {
@@ -39,6 +41,23 @@ const page = () => {
        }
   }
 
+  const [deleteFlag,setDeleteFlag]=useState(false)
+
+  async function deleteAllTaskFunc(){
+    setDeleteFlag(true)
+    alert("Are you sure ? All task wil be deleted")
+    try {
+     const resp=await deleteAllTask(taskList[0].userId)
+     setTaskList([])
+     setDeleteFlag(false)
+     toast.success("All task deleted successfully !!")
+    } catch (error) {
+     setDeleteFlag(false)
+     toast.error("No task present to delete !!");
+    }
+}
+
+
  async function updateTaskFunc(task_id){
       try {
         const resp= await updateTask(task_id)
@@ -48,6 +67,8 @@ const page = () => {
         console.log("update_task_err--> ",error)
       }
  }
+
+
   useEffect(()=>{
   
    if(context.currUser){
@@ -70,7 +91,10 @@ const page = () => {
     })
     
   }
-  return (
+
+// ------------------((end))----------------------
+
+return (
     <>
     {
       (hidePopup)?<Update/>:""
@@ -85,21 +109,32 @@ const page = () => {
           <div className='flex flex-col  items-center  justify-center'>
             
                <div className='w-[85%]  md:w-[60%] flex justify-between items-center '>
-                <span className= 'text-[0.8rem] md:text-[1rem] border p-1'>
-                {moment().format('MMMM Do YYYY')}
-                </span>
+              
+
+                 <button onClick={deleteAllTaskFunc} className='p-1 w-[7rem] text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded '>
+                   {
+                     (deleteFlag)?<ClipLoader color='#fff' size={22}/>:"Clear all task"
+                   }   
+                 </button>
                 
                   <button className=" p-1 text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded ">
                      <Link href="/task">Add more tasks</Link>
                   </button>
                 
                </div>
+
+               <div className='my-4 w-[85%]  md:w-[60%]  justify-start'>
+               <span className= 'text-[0.8rem] md:text-[1rem] border p-1'>
+                {moment().format('MMMM Do YYYY')}
+                </span>
+               </div>
             
               {
-                (taskList.length===0)
+                (taskList.length==0)
                 ?
                  <div className='h-[55vh] flex items-center'>
-                      <ScaleLoader color="#731273" size={20} /> 
+                     <p>No task present</p>
+                     <p> <ScaleLoader color="#731273" size={20} /> </p>
                  </div>
                 :taskList.map((task)=>{
                   return(
@@ -113,7 +148,7 @@ const page = () => {
                               </span>
                               <span className='text-white cursor-pointer' onClick={()=>{
                                   deleteTaskFunc(task._id)
-                                  
+                                   
                                 }}>
                                 <RxCross2/>
                               </span>
