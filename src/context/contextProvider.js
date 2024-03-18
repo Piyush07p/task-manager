@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useSyncExternalStore } from 'react'
 import UserContext from './userContext'
 import { currentUser } from '@/services/userService';
 import { toast } from 'react-toastify';
@@ -9,7 +9,8 @@ const ContextProvider = ({children}) => {
     const [activeData,setActiveData]=useState("")
     const [taskId,setTaskid]=useState({})
     const [hidePopup,setHidePopup]=useState(false);
-    const [markasRead,setMarkAsRead]=useState(false)
+    const [markasRead,setMarkAsRead]=useState(false);
+    const [completedTaskData,setCompletedTaskData]=useState("")
    useEffect(()=>{
     async function loadUser(){
       
@@ -25,7 +26,8 @@ const ContextProvider = ({children}) => {
     }
     loadUser()
    },[])
-  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead}}>
+  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,
+  markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData}}>
        {children}
   </UserContext.Provider>
 }

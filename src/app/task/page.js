@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Image from "next/image"; 
 import svg from '../assets/taskpageImg.svg'
 import { addTask } from '@/services/taskService';
@@ -45,6 +45,9 @@ const page = () => {
         }
 
    }
+
+ 
+   
   return (
     <>
         <section className='p-2 flex flex-col items-center  '>

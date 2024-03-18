@@ -15,7 +15,7 @@ import { ClipLoader } from 'react-spinners';
 
 const page = () => {
   const context=useContext(UserContext);
-  const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead}=useContext(UserContext)
+  const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData}=useContext(UserContext)
   const [taskList,setTaskList]=useState([])
   
   // function that loads tasks
@@ -45,7 +45,12 @@ const page = () => {
 
   async function deleteAllTaskFunc(){
     setDeleteFlag(true)
-    alert("Are you sure ? All task wil be deleted")
+    let conf=confirm("Are you sure ? All task wil be deleted")
+    if(!conf){
+      setDeleteFlag(false)
+      return;
+    }
+
     try {
      const resp=await deleteAllTask(taskList[0].userId)
      setTaskList([])
@@ -91,6 +96,37 @@ const page = () => {
     })
     
   }
+  //----------------------------------------------
+  //----------------(setInterval)-----------------
+  //----------------------------------------------
+
+  function setTimeUntil() {
+    const currTime = new Date();
+    const tenPM = new Date(currTime);
+    tenPM.setHours(23, 6, 0, 0); // Set hours to 22:00:00 (10 PM)
+    
+    let timeDiff = tenPM.getTime() - currTime.getTime();
+    if (timeDiff < 0) {
+        // If it's already past 10 PM for today, set it for tomorrow
+        tenPM.setDate(tenPM.getDate() + 1);
+        timeDiff = tenPM.getTime() - currTime.getTime();
+    }
+    
+    return timeDiff;
+}
+
+// useEffect hook to start the interval when the component mounts
+useEffect(() => {
+  function scheduleFunc(){
+    setCompletedTaskData("completed")
+  }
+  
+  const interval = setInterval(scheduleFunc, setTimeUntil()); // Execute tick function every 1000 milliseconds (1 second)
+
+  // Return a cleanup function to clear the interval when the component unmounts
+  return () => clearInterval(interval);
+}, []);
+
 
 // ------------------((end))----------------------
 
