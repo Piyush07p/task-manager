@@ -11,10 +11,10 @@ const [profileData, setProfileData] = useState(()=>{
   return changedCount?changedCount:[]
 })
 console.log("activeData",activeData)
-useEffect(()=>{
+// useEffect(()=>{
 
-  localStorage.setItem("profileData",JSON.stringify(activeData))
-},[profileData])
+//   localStorage.setItem("profileData",JSON.stringify(activeData))
+// },[profileData])
 
 
 
