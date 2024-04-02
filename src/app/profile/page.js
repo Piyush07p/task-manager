@@ -6,10 +6,10 @@ const page = () => {
 
 const {activeData,setActiveData,completedTaskData,setCompletedTaskData}=useContext(UserContext);
 
-const [profileData, setProfileData] = useState(()=>{
-  const changedCount=localStorage.getItem("profileData");
-  return changedCount?changedCount:[]
-})
+// const [profileData, setProfileData] = useState(()=>{
+//   const changedCount=localStorage.getItem("profileData");
+//   return changedCount?changedCount:[]
+// })
 console.log("activeData",activeData)
 // useEffect(()=>{
 
@@ -40,7 +40,7 @@ const data02=[
                         <h2 className='border-b-2 p-0 my-2 text-[red]'>Your activity</h2>
                         <div>
                           <p>date : {activeData.dateAdded}</p>
-                            <h1>Task pending:{profileData.length}</h1>
+                            {/* <h1>Task pending:{profileData.length}</h1> */}
                             <h1>Task completed:</h1>
                             <h1>this{completedTaskData}</h1>
                         </div>
