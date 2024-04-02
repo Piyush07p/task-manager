@@ -92,7 +92,7 @@ const page = () => {
                       </div>
                       <div>
 
-                         <button type='submit' className='bg-[#731273] w-[6rem] py-1 px-2 my-4 rounded-sm text-white' onClick={handleAddTask}>
+                         <button type='submit' className='bg-[#731273] w-[6rem] py-2 px-2 my-4 rounded-sm text-white' onClick={handleAddTask}>
                          {
                            (taskLoader)? <ClipLoader color="#fff" size={22} />:"Add Task"
                          }

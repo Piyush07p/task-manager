@@ -41,13 +41,13 @@ const Navbar = () => {
             </div>
             <div>
                 <ul className='flex items-center  m-2'>
-                        <li className='mx-3 sm:mx-2   text-[1rem] sm:text-[1.2rem]  '>
-                            <Link href="/"><FiHome style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline'>Home</span></Link>
+                        <li className='mx-3 sm:mx-2 navli   text-[1rem] sm:text-[1.2rem]  '>
+                            <Link href="/"><FiHome style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden  sm:inline'>Home</span></Link>
                         </li>
                         {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
                         </li> */}
-                        <li className='mx-3  sm:mx-2 text-[1rem] sm:text-[1.2rem]  '>
+                        <li className='mx-3  sm:mx-2 navli text-[1rem] sm:text-[1.2rem]  '>
                             <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline'>Show tasks</span></Link>
                         </li>
                         {
