@@ -47,15 +47,14 @@ const data02=[
                     </div>
                </div>
               <div className='w-[100%] h-[20rem]'>
-                <ResponsiveContainer >
+                {/* <ResponsiveContainer >
                     <h1>Today's Activity</h1>
                     <PieChart className="" width={100} height={10}>
-                      {/* <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" /> */}
+                      <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" /> 
                       <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={90} fill="#e671e6" label />
                       <Tooltip/>
-                     
                     </PieChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer> */}
               </div>
             </section>   
         </>

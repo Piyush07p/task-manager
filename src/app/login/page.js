@@ -6,6 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 
 import { ClipLoader } from 'react-spinners';
+
+import { MdOutlineEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FiUpload } from "react-icons/fi";
+
+
+
+
 const page = () => {
    const router=useRouter()
 
@@ -13,7 +21,9 @@ const page = () => {
     email:"",
     password:""
   });
+
 const [loginLoader,setLoginLoader]=useState(false)
+
   async function handleLogin(e){
     e.preventDefault();
     setLoginLoader(true)
@@ -43,27 +53,27 @@ const [loginLoader,setLoginLoader]=useState(false)
         <section className='flex justify-center items-center h-[100vh] p-10'>
           <ToastContainer/>
           
-            <form method='POST' className=' w-[90%] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[15.5rem] md:h-[17rem]' >
+            <form method='POST' className=' w-[100%] rounded-xl border-[var(--border1)] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[17.5rem] md:h-[19rem]' >
 
                     <div>
-                        <label>Email</label><br/>
+                        <label> <MdOutlineEmail style={{display:"inline-block",marginRight:"0.5rem"}}/> Email</label><br/>
                         <input name='email' value={loginData.email} onChange={(e)=>{
                            setLoginData({
                                ...loginData,email:e.target.value
                            })
-                        }} className='w-[90%]  text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type='text'/><br/><br/>
+                        }} className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter name' type='text'/><br/><br/>
                         
                     </div>
                     <div>
-                    <label htmlFor="">password</label><br/>
+                    <label htmlFor=""><RiLockPasswordLine style={{display:"inline-block",marginRight:"0.5rem"}}/>Password</label><br/>
                         <input name='password' value={loginData.value} onChange={(e)=>{
                           setLoginData({
                             ...loginData,password:e.target.value
                           })
-                        }} className='w-[90%]  text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type="password" />
+                        }} className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter password' type="password" />
                     </div>
 
-                    <button onClick={handleLogin} className='bg-[#731273] rounded-md my-8 w-20 hover:bg-black hover:border  p-1'>
+                    <button onClick={handleLogin} className='bg-[#731273]  rounded-3xl my-10 w-24 hover:bg-black hover:border  p-2'>
                     {
                       (loginLoader)?<ClipLoader color="#fff" size={22} />: "Submit"
                     }

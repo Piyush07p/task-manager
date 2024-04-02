@@ -6,7 +6,11 @@ import UserContext from '@/context/userContext'
 import { logoutUser } from '@/services/userService'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+
+import { FiHome } from "react-icons/fi";
+import { FaRegUser } from "react-icons/fa";
+import { GrTask } from "react-icons/gr";
 
 
 const Navbar = () => {
@@ -37,20 +41,20 @@ const Navbar = () => {
             </div>
             <div>
                 <ul className='flex items-center  m-2'>
-                        <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
-                            <Link href="/">Home</Link>
+                        <li className='mx-1 sm:mx-2   text-[0.6rem] sm:text-[1rem]  '>
+                            <Link href="/"><FiHome style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline'>Home</span></Link>
                         </li>
                         {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
                         </li> */}
                         <li className='mx-1  sm:mx-2 text-[0.6rem] sm:text-[1rem]  '>
-                            <Link href="/tasklist">Show task</Link>
+                            <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline'>Show tasks</span></Link>
                         </li>
                         {
                             (context.currUser)?  
                            <>
-                            <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]   font-bold border-b'>
-                            <Link href="/profile">{JSON.parse(localStorage.getItem("userName"))}</Link>
+                            <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]   font-bold '>
+                            <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName"))}</Link>
                             </li>
                             <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]   shadow-sm  bg-gray-900 px-2 rounded-md py-1'>
                             <button  onClick={doLogout}>logout</button>

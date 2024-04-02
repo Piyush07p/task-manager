@@ -4,6 +4,12 @@ import { addUser } from '@/services/userService'
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+import { MdOutlineEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FiUserCheck } from "react-icons/fi";
+import { FiUpload } from "react-icons/fi";
+
+
 const page = () => {
     const [signData,setSignData]=useState({
             name:"",
@@ -39,35 +45,35 @@ const page = () => {
     <>
      <section className='flex justify-center items-center h-[100vh] p-10'>
           <ToastContainer/>
-            <form method='POST' className='bg-[#272727] w-[90%] md:w-[50%] sm:w-[65%] p-4 h-[22rem]' >
+            <form method='POST' className='bg-[#272727] rounded-2xl w-[100%] md:w-[60%] lg:w-[50%] sm:w-[65%] p-4 h-[24rem]' >
                     <div>
-                        <label>Name</label><br/>
+                        <label><FiUserCheck style={{display:"inline-block",marginRight:"0.5rem"}}/>Name</label><br/>
                         <input value={signData.name} name="name" onChange={(e)=>{
                             setSignData({
                                 ...signData,name:e.target.value
                             })
-                        }} className='w-[90%] text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type="text"/> <br/><br/>
+                        }} className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter your name' type="text"/> <br/><br/>
                        
                     </div>
                     <div>
-                        <label>Email</label><br/>
+                        <label><MdOutlineEmail style={{display:"inline-block",marginRight:"0.5rem"}}/>Email</label><br/>
                         <input  value={signData.email} name="email" onChange={(e)=>{
                             setSignData({
                                 ...signData,email:e.target.value
                             })
-                        }}  className='w-[90%]  text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type='text'/><br/><br/>
+                        }}  className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter your email' type='text'/><br/><br/>
                         
                     </div>
                     <div>
-                    <label htmlFor="">password</label><br/>
+                    <label htmlFor=""><RiLockPasswordLine style={{display:"inline-block",marginRight:"0.5rem"}}/>Password</label><br/>
                         <input  value={signData.password} name="password" onChange={(e)=>{
                             setSignData({
                                 ...signData,password:e.target.value
                             })
-                        }}  className='w-[90%]  text-black h-8 rounded-md mt-2 px-2' placeholder='enter your name' type="password" />
+                        }}  className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter your name' type="password" />
                     </div>
 
-                    <button onClick={handleSignup} className='bg-[#731273] rounded-md my-8 w-20 hover:bg-black hover:border  p-1'>Submit</button>
+                    <button onClick={handleSignup} className='bg-[#731273]  rounded-3xl my-10 w-24 hover:bg-black hover:border  p-2'>Submit <FiUpload style={{display:"inline-block",marginRight:"0.2rem"}}/></button>
             </form>
 
           

@@ -11,6 +11,7 @@ const ContextProvider = ({children}) => {
     const [hidePopup,setHidePopup]=useState(false);
     const [markasRead,setMarkAsRead]=useState(false);
     const [completedTaskData,setCompletedTaskData]=useState("")
+
    useEffect(()=>{
     async function loadUser(){
       
