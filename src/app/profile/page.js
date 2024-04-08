@@ -1,7 +1,7 @@
 "use client"
 import UserContext from '@/context/userContext'
 import React, { useContext,useState,useEffect} from 'react'
-import {ResponsiveContainer,PieChart,Pie,Tooltip,XAxis} from 'recharts'
+import {ResponsiveContainer,PieChart,Pie,Tooltip,XAxis, LineChart, Line} from 'recharts'
 const page = () => {
 
 const {activeData,setActiveData,completedTaskData,setCompletedTaskData}=useContext(UserContext);
@@ -21,7 +21,7 @@ console.log("activeData",activeData)
 const data02=[
   {
     "name": "Completed",
-    "value": 0
+    "value": 3
   },
   {
     "name": "Pending",
@@ -46,15 +46,26 @@ const data02=[
                         </div>
                     </div>
                </div>
+               
               <div className='w-[100%] h-[20rem]'>
-                {/* <ResponsiveContainer >
-                    <h1>Today's Activity</h1>
+                <ResponsiveContainer >
+                    <h1>Your Activity</h1>
                     <PieChart className="" width={100} height={10}>
-                      <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" /> 
+                      {/* <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />  */}
                       <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={90} fill="#e671e6" label />
                       <Tooltip/>
                     </PieChart>
-                </ResponsiveContainer> */}
+                </ResponsiveContainer>
+              </div>
+              <div className='w-[100%] h-[20rem]'>
+                <ResponsiveContainer className="w-[50%]" >
+                    <h1>Your Activity</h1>
+                    <LineChart className="" width={100} height={10}>
+                      {/* <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />  */}
+                      <Line data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={90} fill="#e671e6" label />
+                      <Tooltip/>
+                    </LineChart>
+                </ResponsiveContainer>
               </div>
             </section>   
         </>

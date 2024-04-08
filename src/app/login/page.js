@@ -10,6 +10,8 @@ import { ClipLoader } from 'react-spinners';
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiUpload } from "react-icons/fi";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 
 
@@ -21,7 +23,7 @@ const page = () => {
     email:"",
     password:""
   });
-
+  const [showPass,setShowPass]=useState(false)
 const [loginLoader,setLoginLoader]=useState(false)
 
   async function handleLogin(e){
@@ -47,7 +49,13 @@ const [loginLoader,setLoginLoader]=useState(false)
     }
 
   }
-
+  const showPassFunc=(flag)=>{
+      if(flag){
+        setShowPass(flag)
+      }else{
+        setShowPass(flag)
+      }
+  }
   return (
     <>
         <section className='flex justify-center items-center h-[100vh] p-10'>
@@ -66,18 +74,21 @@ const [loginLoader,setLoginLoader]=useState(false)
                     </div>
                     <div>
                     <label htmlFor=""><RiLockPasswordLine style={{display:"inline-block",marginRight:"0.5rem"}}/>Password</label><br/>
+                      <div className='flex'>
                         <input name='password' value={loginData.value} onChange={(e)=>{
                           setLoginData({
                             ...loginData,password:e.target.value
                           })
-                        }} className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter password' type="password" />
+                        }} className='passInput w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter password' type={showPass?"text":"password"} />
+                        <span className='cursor-pointer' >{(showPass)?<FaEye onClick={()=>showPassFunc(false)}/>:<FaEyeSlash onClick={()=>showPassFunc(true)}/>}</span>
+                      </div>
                     </div>
 
                     <button onClick={handleLogin} className='bg-[#731273]  rounded-3xl my-10 w-24 hover:bg-black hover:border  p-2'>
-                    {
-                      (loginLoader)?<ClipLoader color="#fff" size={22} />: "Submit"
-                    }
-                      </button>
+                      {
+                        (loginLoader)?<ClipLoader color="#fff" size={22} />: "Submit"
+                      }
+                    </button>
 
                   
             </form>

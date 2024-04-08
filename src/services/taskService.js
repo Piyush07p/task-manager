@@ -3,7 +3,8 @@ import { taskModel } from "@/models/task";
 
 export async function addTask(task){
     try {
-      let result= await httpAxios.post('/api/tasks',task).then((resp)=> resp.data)
+      let result= await httpAxios.post('/api/tasks',task)
+      .then((resp)=> resp.data)
       console.log("taskService--> ",result);
       return result;
     } catch (error) {
@@ -56,4 +57,13 @@ export async function editTask(task_id,editData){
    .put(`api/tasks/updateTask/${task_id}`,editData)
    .then((resp)=>resp.data)
    return result;
+}
+
+
+export async function addStats(pendingTask,taskCompleted){
+  const result=await httpAxios
+  .post(`/api/statsdata`)
+  .then((resp)=>resp.data);
+  return result;
+
 }

@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
-import { deleteTask, getTaskList, updateTask,deleteAllTask} from '@/services/taskService'
+import { deleteTask, getTaskList, updateTask,deleteAllTask,addStats} from '@/services/taskService'
 import UserContext from '@/context/userContext'
 import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
@@ -114,6 +114,20 @@ const page = () => {
     
     return timeDiff;
 }
+//--------------------(add_stats)--------------------
+
+ async function addStatsFunc(){
+   const taskCompleted=completedTask();
+  const pendingTask=taskList.length-taskCompleted;
+  console.log(pendingTask,taskCompleted)
+  try {
+    const resp= await addStats(pendingTask,taskCompleted)
+    toast.success("Stats upadated !!")
+    
+  } catch (error) {
+    console.log("Error_in_addStats-->",error)
+  }
+ }
 
 // useEffect hook to start the interval when the component mounts
 useEffect(() => {
@@ -191,7 +205,7 @@ return (
                            </p>
                           </div>
                           <p className='text-[0.7rem] md:text-[1rem] whitespace-pre-wrap'>{task.content}</p>
-                          <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="completed"?"text-green-600":"text-red-600"}`}>Status: {task.status}</p>
+                          <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="Important"?"text-yellow-300":(task.status==="completed")?"text-green-500":"text-red-500"}`}>Status: {task.status}</p>
                           <div className='flex items-center justify-between'>
                             <button onClick={()=>updateTaskFunc(task._id)} className={`text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 ${markasRead?" bg-green-900 ":"bg-green-600 "} rounded cursor-pointer p-1`}>Mark as completed</button>
                             <p className='text-right text-[0.5rem] sm:text-[0.7rem]'>{task.dateAdded}</p>
@@ -201,6 +215,9 @@ return (
                   )
                 })
               }
+          </div>
+          <div className='flex justify-center'>
+             <button onClick={addStatsFunc} className='rounded bg-green-600 px-2 py-1 m-2'>final submit</button>
           </div>
       </section>
     </>

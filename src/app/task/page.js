@@ -87,7 +87,7 @@ const page = () => {
                           }} value={taskData.status} className=' w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
                           <option >Choose</option>
                           <option>pending</option>
-                          <option>completed</option>
+                          <option>Important</option>
                         </select>
                       </div>
                       <div>
