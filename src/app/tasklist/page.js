@@ -117,16 +117,16 @@ const page = () => {
 //--------------------(add_stats)--------------------
 
  async function addStatsFunc(){
-   const taskCompleted=completedTask();
-  const pendingTask=taskList.length-taskCompleted;
-  console.log(pendingTask,taskCompleted)
-  try {
-    const resp= await addStats(pendingTask,taskCompleted)
-    toast.success("Stats upadated !!")
+  //  const taskCompleted=completedTask();
+  // const pendingTask=taskList.length-taskCompleted;
+  // console.log(pendingTask,taskCompleted)
+  // try {
+  //   const resp= await addStats(pendingTask,taskCompleted)
+  //   toast.success("Stats upadated !!")
     
-  } catch (error) {
-    console.log("Error_in_addStats-->",error)
-  }
+  // } catch (error) {
+  //   console.log("Error_in_addStats-->",error)
+  // }
  }
 
 // useEffect hook to start the interval when the component mounts
