@@ -9,6 +9,8 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { FiUserCheck } from "react-icons/fi";
 import { FiUpload } from "react-icons/fi";
 
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const page = () => {
     const [signData,setSignData]=useState({
@@ -41,6 +43,15 @@ const page = () => {
                 console.log("signupErr--> ", error )
             }
     }
+    const [showPass,setShowPass]=useState(false)
+
+    const showPassFunc=(flag)=>{
+        if(flag){
+          setShowPass(flag)
+        }else{
+          setShowPass(flag)
+        }
+    }
  return(
     <>
      <section className='flex justify-center items-center h-[100vh] p-10'>
@@ -66,11 +77,14 @@ const page = () => {
                     </div>
                     <div>
                     <label htmlFor=""><RiLockPasswordLine style={{display:"inline-block",marginRight:"0.5rem"}}/>Password</label><br/>
-                        <input  value={signData.password} name="password" onChange={(e)=>{
+                       <div className='flex'>
+                       <input  value={signData.password} name="password" onChange={(e)=>{
                             setSignData({
                                 ...signData,password:e.target.value
                             })
-                        }}  className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter your name' type="password" />
+                        }}  className='w-[90%] outline-none border-b-2  border-gray-500 bg-[#272727] text-white h-8  mt-4 px-2' placeholder='enter your name' type={showPass?"text":"password"} />
+                        <span className='cursor-pointer' >{(showPass)?<FaEye onClick={()=>showPassFunc(false)}/>:<FaEyeSlash onClick={()=>showPassFunc(true)}/>}</span>
+                       </div>
                     </div>
 
                     <button onClick={handleSignup} className='bg-[#731273]  rounded-3xl my-10 w-24 hover:bg-black hover:border  p-2'>Submit <FiUpload style={{display:"inline-block",marginRight:"0.2rem"}}/></button>
