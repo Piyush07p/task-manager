@@ -22,9 +22,11 @@ const page = () => {
 
   async function loadTaskfunc(userId){
     let listData=await getTaskList(userId)
-    console.log("tasklistPage---=> ", listData)    
+    console.log("tasklistPage---=> ", listData)   
+    
     setTaskList([...listData].reverse())
     setActiveData([...listData]);
+    
   }
 
   // function  calling the deleteTask api
@@ -180,10 +182,11 @@ return (
                </div>
             
               {
-                (taskList.length==0)
+
+                (!taskList.length)
                 ?
                  <div className='h-[55vh] flex items-center'>
-                     <p>No task present</p>
+                     {(taskList.length==0)?<p>No task present</p>:""}
                      <p> <ScaleLoader color="#731273" size={20} /> </p>
                  </div>
                 :taskList.map((task)=>{

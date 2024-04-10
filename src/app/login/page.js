@@ -1,5 +1,6 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
+import UserContext from '@/context/userContext'
 import { loginUser } from '@/services/userService'
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,6 +8,8 @@ import { useRouter } from 'next/navigation';
 
 import { ClipLoader } from 'react-spinners';
 
+
+//icons
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FiUpload } from "react-icons/fi";
@@ -26,16 +29,22 @@ const page = () => {
   const [showPass,setShowPass]=useState(false)
 const [loginLoader,setLoginLoader]=useState(false)
 
+const {loadUser}=useContext(UserContext)
+
+// ----------------------(Login_handler)--------------------
+//------------------------(           )--------------------
+
   async function handleLogin(e){
     e.preventDefault();
     setLoginLoader(true)
-    try {
+    try { 
       let resp=await loginUser(loginData);
       if(!resp.success){
        setLoginLoader(false)
         throw new Error("Invalid credentails !!")
       }
       setLoginLoader(false)
+      loadUser()
       toast.success("Login success",{
         position: 'top-center',
       })
@@ -58,7 +67,7 @@ const [loginLoader,setLoginLoader]=useState(false)
   }
   return (
     <>
-        <section className='flex justify-center items-center h-[100vh] p-10'>
+        <section className='flex justify-center pt-[5rem] h-[100vh] p-10'>
           <ToastContainer/>
           
             <form method='POST' className=' w-[100%] rounded-xl border-[var(--border1)] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[17.5rem] md:h-[19rem]' >

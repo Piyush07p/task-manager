@@ -30,7 +30,7 @@ export async function currentUser(){
     let result=await httpAxios
     .get('/api/currentUser')
     .then((resp)=>resp.data);
-    
+    console.log("current_user_get-->",result);
     return result;
     
   } catch (error) {

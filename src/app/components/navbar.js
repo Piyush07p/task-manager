@@ -14,13 +14,14 @@ import { GrTask } from "react-icons/gr";
 
 
 const Navbar = () => {
-   const context=useContext(UserContext)
+   const {currUser,setCurrUser}=useContext(UserContext)
+   console.log("current_user2-->",currUser)
    const router=useRouter()
    async function doLogout(){
        
     try {
         const result =await logoutUser()
-        context.setCurrUser(undefined)
+        setCurrUser(undefined)
         router.push('/login')
         // toast.success("logout successfull !!")
     } catch (error) {
@@ -51,7 +52,7 @@ const Navbar = () => {
                             <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden  sm:group-hover:inline'>Show tasks</span></Link>
                         </li>
                         {
-                            (context.currUser)?  
+                            (currUser)?  
                            <>
                             <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
                             <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName"))}</Link>

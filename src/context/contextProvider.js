@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState, useSyncExternalStore } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserContext from './userContext'
 import { currentUser } from '@/services/userService';
 import { toast } from 'react-toastify';
@@ -12,23 +12,27 @@ const ContextProvider = ({children}) => {
     const [markasRead,setMarkAsRead]=useState(false);
     const [completedTaskData,setCompletedTaskData]=useState("")
 
-   useEffect(()=>{
-    async function loadUser(){
+    const loadUser=async()=>{
       
         try {
             const loggedUser=await currentUser();
             localStorage.setItem("userName",JSON.stringify(loggedUser.name))
             console.log("provider--> ", loggedUser)
-            setCurrUser({...loggedUser});
+            if(loggedUser.code=="ERR_BAD_REQUEST"){
+
+            }else{
+                setCurrUser({...loggedUser});
+            }
         } catch (error) {
             console.log(error)
             toast.error("error in loading current user")
         }
     }
+   useEffect(()=>{
     loadUser()
    },[])
   return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,
-  markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData}}>
+  markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData,loadUser}}>
        {children}
   </UserContext.Provider>
 }

@@ -12,7 +12,7 @@ export async function GET(request){
   console.log(data)
   await createDb();
   const userData=await userModel.findById(data._id).select('-password');
-
+  console.log("current_user-->",userData)
   return NextResponse.json(userData)
 
 }
