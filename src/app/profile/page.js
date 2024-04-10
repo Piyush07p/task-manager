@@ -48,7 +48,7 @@ const data02=[
                     <div className='felx flex-col  rounded-md items-center border w-[80%] sm:w-[60%] md:w-[50%] p-3'>
                         <h2 className='border-b-2 p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.8rem]'>Your activity</h2>
                         <div>
-                          <p>date : {moment().format("Do MMMM YYYY")}</p>
+                          <p>Date : {moment().format("Do MMMM YYYY")}</p>
                             {/* <h1>Task pending:{profileData.length}</h1> */}
                             <h1>Task completed: {activeData.completedTask?.length}</h1>
                             <h1>Task pending: {activeData.tasks?.length-activeData.completedTask?.length}</h1>

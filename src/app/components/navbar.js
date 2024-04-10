@@ -1,5 +1,5 @@
 "use client"
-import React, {  useEffect,useContext} from 'react'
+import React, {useEffect,useContext} from 'react'
 import Link from 'next/link'
 
 import UserContext from '@/context/userContext'
@@ -48,14 +48,14 @@ const Navbar = () => {
                         {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
                         </li> */}
-                        <li className='group mx-3 sm:w-[8rem]   transition-all sm:hover:w-[8rem] sm:mx-2 navli text-[1rem] sm:text-[1.2rem]  '>
-                            <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden  sm:group-hover:inline'>Show tasks</span></Link>
+                        <li className='group mx-3 sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1rem] sm:text-[1.2rem]  '>
+                            <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden transition duration-1000 ease-in-out   sm:group-hover:inline'>Show tasks</span></Link>
                         </li>
                         {
                             (currUser)?  
                            <>
                             <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
-                            <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName"))}</Link>
+                            <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName")).substring(0,8)}</Link>
                             </li>
                             <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm  bg-gray-900 px-2 rounded-md py-1'>
                             <button  onClick={doLogout}>logout</button>

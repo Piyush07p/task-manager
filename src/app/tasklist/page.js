@@ -134,7 +134,12 @@ const page = () => {
  }
 
 // useEffect hook to start the interval when the component mounts
+const [loading,setLoading]=useState(false)
 useEffect(() => {
+  setLoading(true)
+  setTimeout(()=>{
+    setLoading(false)
+  },2000)
   function scheduleFunc(){
     setCompletedTaskData("completed")
   }
@@ -156,8 +161,8 @@ return (
       <section className='p-3flex flex-col'>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
           <div className='flex justify-center '>
-            <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
-            <h2 className='text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
+            <h2 className='rounded-2xl text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
+            <h2 className=' rounded-2xl text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
           </div>
           <ToastContainer/>  
           <div className='flex flex-col  items-center  justify-center'>
@@ -188,8 +193,8 @@ return (
                 (!taskList.length)
                 ?
                  <div className='h-[55vh] flex items-center'>
-                     {(taskList.length==0)?<p>No task present</p>:""}
-                     <p> <ScaleLoader color="#731273" size={20} /> </p>
+                     <p className={`${loading?"hidden":""}`}>No task present</p>
+                     <p className={`${loading?"":"hidden"}`}> <ScaleLoader  color="#731273" size={20} /> </p>
                  </div>
                 :taskList.map((task)=>{
                   return(
