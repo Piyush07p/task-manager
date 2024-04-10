@@ -25,7 +25,9 @@ const page = () => {
     console.log("tasklistPage---=> ", listData)   
     
     setTaskList([...listData].reverse())
-    setActiveData([...listData]);
+    const completedTask=listData.filter((e)=>e.status=="completed")
+
+    setActiveData({tasks:[...listData],completedTask:completedTask});
     
   }
 

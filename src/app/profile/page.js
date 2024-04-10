@@ -2,15 +2,21 @@
 import UserContext from '@/context/userContext'
 import React, { useContext,useState,useEffect} from 'react'
 import {ResponsiveContainer,PieChart,Pie,Tooltip,XAxis, LineChart, Line} from 'recharts'
+import moment from 'moment'
 const page = () => {
 
-const {activeData,setActiveData,completedTaskData,setCompletedTaskData}=useContext(UserContext);
+const {currUser,setCurrUser,activeData,setActiveData,completedTaskData,setCompletedTaskData,loadUser}=useContext(UserContext);
 
 // const [profileData, setProfileData] = useState(()=>{
 //   const changedCount=localStorage.getItem("profileData");
 //   return changedCount?changedCount:[]
 // })
-console.log("activeData",activeData)
+
+useEffect(()=>{
+  loadUser()
+
+},[])
+console.log("current_profile_user-->",currUser)
 // useEffect(()=>{
 
 //   localStorage.setItem("profileData",JSON.stringify(activeData))
@@ -35,14 +41,17 @@ const data02=[
             <section className='p-3 flex flex-col items-center '>
                <h1 className='text-xl my-6'>Profile page</h1>
                <div className=' flex flex-col items-center w-[100%]'>
-                    <h1 className='my-2'>Name: xyz</h1>
+                    <div className='flex justify-between rounded-md items-center border w-[80%] sm:w-[60%] md:w-[50%] p-3 my-2'>
+                       <h1 className='my-2'>Name: {currUser.name}</h1>
+                       <h1>Email: {currUser.email}</h1>
+                    </div>
                     <div className='felx flex-col  rounded-md items-center border w-[80%] sm:w-[60%] md:w-[50%] p-3'>
-                        <h2 className='border-b-2 p-0 my-2 text-[red]'>Your activity</h2>
+                        <h2 className='border-b-2 p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.8rem]'>Your activity</h2>
                         <div>
-                          <p>date : {activeData.dateAdded}</p>
+                          <p>date : {moment().format("Do MMMM YYYY")}</p>
                             {/* <h1>Task pending:{profileData.length}</h1> */}
-                            <h1>Task completed:</h1>
-                            <h1>this{completedTaskData}</h1>
+                            <h1>Task completed: {activeData.completedTask?.length}</h1>
+                            <h1>Task pending: {activeData.tasks?.length-activeData.completedTask?.length}</h1>
                         </div>
                     </div>
                </div>

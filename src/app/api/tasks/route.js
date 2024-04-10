@@ -7,8 +7,12 @@ export const POST= async(request)=>{
     
         const {title, content, status}= await request.json();
 
+        if(!title|| !content || !status){
+            return NextResponse.json({
+                msg:"Fill all the fields"
+             }) 
+        }
         // fetching logged-in User --->
-
         const authToken=request.cookies.get('loginToken')?.value;
         const data=jwt.verify(authToken,process.env.JWT_KEY);
         console.log("---> ",data)

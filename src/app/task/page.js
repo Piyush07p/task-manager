@@ -24,8 +24,14 @@ const page = () => {
         try {
              
             const res=await addTask(taskData)
-      
-           if(res){
+           if(res.msg=="Fill all the fields"){
+            toast.warning("Fields can't be empty !!",{
+              position:'top-center'
+            })
+            setTaskLoader(false)
+
+           }
+           else{
             setTaskLoader(false)
             toast.success("task added",{
               position:'top-center'
@@ -61,7 +67,7 @@ const page = () => {
                       <div className='w-[100%]'>
                         
                         <label>Enter title</label> <br/>
-                        <input required  placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' onChange={(e)=>{
+                        <input  required  placeholder='enter title' className=' w-[100%] px-2 bg-[#272727] text-white h-8 sm:h-10' onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               title:e.target.value
@@ -70,7 +76,7 @@ const page = () => {
                       </div>
                       <div>
                         <label>Enter description</label> <br/>
-                        <textarea   placeholder='enter description'  onChange={(e)=>{
+                        <textarea required   placeholder='enter description'  onChange={(e)=>{
                             setTaskData({
                               ...taskData, 
                               content:e.target.value
