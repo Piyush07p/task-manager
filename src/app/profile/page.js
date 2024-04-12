@@ -41,7 +41,7 @@ const data02=[
             <section className='p-3 flex flex-col items-center '>
                <h1 className='text-xl my-6'>Profile page</h1>
                <div className=' flex flex-col items-center w-[100%]'>
-                    <div className='flex justify-between rounded-md items-center border w-[80%] sm:w-[60%] md:w-[50%] p-3 my-2'>
+                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[80%] sm:w-[60%] md:w-[50%] p-3 my-2'>
                        <h1 className='my-2'>Name: {currUser.name}</h1>
                        <h1>Email: {currUser.email}</h1>
                     </div>

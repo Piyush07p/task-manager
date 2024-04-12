@@ -59,9 +59,9 @@ const page = () => {
         <section className='p-2 flex flex-col items-center  '>
             <ToastContainer />
               <div className=' mt-3 ' >
-                <Image alt='image' className='w-[13rem] sm:w-[20rem]' src={svg}/>
+                <Image alt='image' className='w-[16rem] sm:w-[20rem]' src={svg}/>
               </div>
-              <div className=' p-4 w-[80%] sm:w-[60%] md:w-[50%]  my-2 text-black'>
+              <div className=' p-4 w-[95%] sm:w-[60%] md:w-[50%]  my-2 text-black'>
                 <h1 className='text-white font-bold mb-2'>Add task here...</h1>
                  <form className='w-[100%] sm:text-[1rem] text-white text-[0.7rem] '>
                       <div className='w-[100%]'>

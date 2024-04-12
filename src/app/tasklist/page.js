@@ -10,7 +10,7 @@ import  Update  from '../components/update';
 import moment from 'moment';
 import Link from 'next/link';
 import { ClipLoader } from 'react-spinners';
-
+import { BsCalendar2Check } from "react-icons/bs";
 
 
 const page = () => {
@@ -160,9 +160,9 @@ return (
     }
       <section className='p-3flex flex-col'>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
-          <div className='flex justify-center '>
-            <h2 className='rounded-2xl text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
-            <h2 className=' rounded-2xl text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
+          <div className='flex justify-center  '>
+            <h2 className='rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
+            <h2 className=' rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
           </div>
           <ToastContainer/>  
           <div className='flex flex-col  items-center  justify-center'>
@@ -182,9 +182,10 @@ return (
                 
                </div>
 
-               <div className='my-4 w-[85%]  md:w-[60%]  justify-start'>
-               <span className= 'text-[0.8rem] md:text-[1rem] border p-1'>
-                {moment().format('MMMM Do YYYY')}
+               <div className='my-4 w-[85%] flex  md:w-[60%] items-center  justify-start'>
+               <BsCalendar2Check className='text-[1.2rem]'/>
+               <span className= 'text-[0.8rem] md:text-[1rem]  p-1'>
+               {moment().format('MMMM Do YYYY')}
                 </span>
                </div>
             
