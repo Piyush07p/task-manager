@@ -5,6 +5,8 @@ import UserContext from '@/context/userContext'
 import { RxCross2 } from "react-icons/rx";
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { currentUser } from '@/services/userService';
+
 import ScaleLoader from "react-spinners/ScaleLoader";
 import  Update  from '../components/update';
 import moment from 'moment';
@@ -18,6 +20,7 @@ const page = () => {
   const {activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData}=useContext(UserContext)
   const [taskList,setTaskList]=useState([])
   
+  const [finalSubmit,setFinalSubmit]=useState(true)
   // function that loads tasks
 
   async function loadTaskfunc(userId){
@@ -49,6 +52,7 @@ const page = () => {
 
   async function deleteAllTaskFunc(){
     setDeleteFlag(true)
+    setFinalSubmit(true)
     let conf=confirm("Are you sure ? All task wil be deleted")
     if(!conf){
       setDeleteFlag(false)
@@ -121,17 +125,29 @@ const page = () => {
 //--------------------(add_stats)--------------------
 
  async function addStatsFunc(){
-  //  const taskCompleted=completedTask();
-  // const pendingTask=taskList.length-taskCompleted;
-  // console.log(pendingTask,taskCompleted)
-  // try {
-  //   const resp= await addStats(pendingTask,taskCompleted)
-  //   toast.success("Stats upadated !!")
-    
-  // } catch (error) {
-  //   console.log("Error_in_addStats-->",error)
-  // }
+   const loggedUser=await currentUser();
+   setFinalSubmit(false)
+  const taskCompleted=completedTask();
+  const pendingTask=taskList.length-taskCompleted;
+  const  accuracy= (taskCompleted/taskList.length)*100
+  const statsObj={
+       userId:loggedUser._id,
+       taskCompleted:taskCompleted,
+       pendingTask:pendingTask,
+       date:moment().format("Do MMMM YY"),
+       accuracy:accuracy
+
+  }
+  try {
+    const resp= await addStats(statsObj)
+    toast.success("Stats updated !!")
+    deleteAllTaskFunc()
+  } catch (error) {
+    console.log("Error_in_addStats-->",error)
+  }
  }
+// ------------------(end)--------------------
+
 
 // useEffect hook to start the interval when the component mounts
 const [loading,setLoading]=useState(false)
@@ -228,7 +244,10 @@ return (
               }
           </div>
           <div className='flex justify-center'>
-             <button onClick={addStatsFunc} className='rounded bg-green-600 px-2 py-1 m-2'>final submit</button>
+          {
+            finalSubmit?<button onClick={addStatsFunc} className='rounded bg-green-600 px-2 py-1 m-2'>final submit</button>:""
+          }
+             
           </div>
       </section>
     </>

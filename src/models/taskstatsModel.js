@@ -1,15 +1,21 @@
 import  mongoose  from "mongoose";
 
 const stasSchema= new mongoose.Schema({
-    completed:{
+    userId:{
+        type:String,
+    },
+    taskCompleted:{
         type:String,
 
     },
-    pending:{
+    pendingTask:{
         type:String,
     },
     date:{
         type:String,
+    },
+    accuracy:{
+        type:Number
     }
 })
 

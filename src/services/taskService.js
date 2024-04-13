@@ -60,10 +60,17 @@ export async function editTask(task_id,editData){
 }
 
 
-export async function addStats(pendingTask,taskCompleted){
+export async function addStats(statsObj){
   const result=await httpAxios
-  .post(`/api/statsdata`)
+  .post(`/api/statsdata`,statsObj)
   .then((resp)=>resp.data);
   return result;
 
+}
+
+export async function getStats(userId){
+    const result= await httpAxios
+    .get(`/api/statsdata/${userId}`)
+    .then((resp)=>resp.data)
+    return result 
 }

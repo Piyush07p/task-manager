@@ -9,7 +9,6 @@ export  async function POST(request){
     
     try {
         const {name,email,password,taskId}=await request.json();
-        console.log("******",email)
         const hashedPass=await bcrypt.hash(password,10);
         await createDb();
         const user=await userModel.create({
