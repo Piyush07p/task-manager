@@ -1,6 +1,6 @@
 "use client"
 import UserContext from '@/context/userContext'
-import React, { useContext,useState,useEffect} from 'react'
+import React, { useContext,useState,useEffect,useRef} from 'react'
 import {ResponsiveContainer,PieChart,Pie,Tooltip,XAxis, LineChart, Line} from 'recharts'
 import moment from 'moment'
 import { getStats } from '@/services/taskService'
@@ -27,6 +27,7 @@ console.log("current_profile_user-->",currUser)
 const [statsData,setStatsData]=useState([])
 const [totalAccuracy,setTotalAccuracy]=useState(0);
 const [userlevel,setUserlevel]=useState("");
+const progressWidth=useRef('')
 
 async function loadStatsfunc(userId){
   let getstatsData=await getStats(userId)
@@ -46,33 +47,34 @@ async function loadStatsfunc(userId){
   }else{
     setUserlevel("Expert")
   }
+   
 }
 useEffect(()=>{
   
    loadStatsfunc(currUser?._id);
-  
+   
  },[currUser])
 
-
+ 
 
 
   return (
         <>
             <section className='p-3 flex flex-col items-center '>
-               <h1 className='text-xl my-6'>Profile page</h1>
+               <h1 className='text-xl my-6'>User Profile</h1>
                <div className=' flex flex-col items-center w-[100%]'>
-                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3 my-2'>
+                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3 my-2'>
                        <h1 className='my-2'>Name: {currUser?.name}</h1>
                        <h1>Email: {currUser?.email}</h1>
                     </div>
-                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3 my-2'>
+                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3 my-2'>
                            <h1 className='my-2'>Overall Accuracy: {totalAccuracy.toFixed(2)} %
                            
                            </h1>
-                          <h1>Level: {userlevel}</h1>
+                          <h1>Your Level: <span className='text-green-400 font-bold'>{userlevel}</span></h1>
                     </div>
-                    <div className='felx flex-col  rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3'>
-                        <h2 className='border-b-2 p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.8rem]'>Your activity</h2>
+                    <div className='felx flex-col  rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3'>
+                        <h2 className=' p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.6rem]'>Your activity</h2>
                         
                             {
                                (!statsData?.length)
@@ -91,8 +93,9 @@ useEffect(()=>{
                                       <div className='flex items-center'>
                                           <h1>Accuracy:</h1>
                                           <p className='h-[1.5rem] m-2 w-[10rem] border flex items-center '>
-                                            <p className=' bg-green-500 w-[50%] h-[1.2rem] mr-2'></p> {elem.accuracy.toFixed(2)}%
+                                            <p style={{width:`${elem.accuracy}%`}}  className='progressWidth bg-green-500  h-[1.2rem] mr-2'></p> 
                                           </p>
+                                          <p className='text-[0.75rem]'>{elem.accuracy.toFixed(2)}%</p>
                                       </div>
                                     </div>
                                   </>
