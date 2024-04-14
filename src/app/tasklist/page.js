@@ -141,7 +141,7 @@ const page = () => {
   try {
     const resp= await addStats(statsObj)
     toast.success("Stats updated !!")
-    deleteAllTaskFunc()
+    // deleteAllTaskFunc()
   } catch (error) {
     console.log("Error_in_addStats-->",error)
   }

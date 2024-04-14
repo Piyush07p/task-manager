@@ -24,13 +24,28 @@ useEffect(()=>{
 console.log("current_profile_user-->",currUser)
 
 
-const [statsData,setStatsData]=useState()
+const [statsData,setStatsData]=useState([])
+const [totalAccuracy,setTotalAccuracy]=useState(0);
+const [userlevel,setUserlevel]=useState("");
 
 async function loadStatsfunc(userId){
   let getstatsData=await getStats(userId)
   setStatsData([...getstatsData.statsData]);
   console.log("statsData-->",statsData)
-    
+  let sum=getstatsData.statsData.reduce((acc,curr)=>{
+    return acc+ curr.accuracy
+  },0)
+  sum=sum/getstatsData.statsData.length;
+  setTotalAccuracy(sum)
+  if(sum<40){
+    setUserlevel("Novice")
+  }else if(sum>40&&sum<70){
+    setUserlevel("Intermediate")
+  }else if(sum>70&&sum<85){
+    setUserlevel("Advance")
+  }else{
+    setUserlevel("Expert")
+  }
 }
 useEffect(()=>{
   
@@ -49,6 +64,12 @@ useEffect(()=>{
                     <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3 my-2'>
                        <h1 className='my-2'>Name: {currUser?.name}</h1>
                        <h1>Email: {currUser?.email}</h1>
+                    </div>
+                    <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3 my-2'>
+                           <h1 className='my-2'>Overall Accuracy: {totalAccuracy.toFixed(2)} %
+                           
+                           </h1>
+                          <h1>Level: {userlevel}</h1>
                     </div>
                     <div className='felx flex-col  rounded-md items-center border w-[95%] sm:w-[60%] md:w-[50%] p-3'>
                         <h2 className='border-b-2 p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.8rem]'>Your activity</h2>
