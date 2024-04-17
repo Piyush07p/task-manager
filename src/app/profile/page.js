@@ -26,7 +26,7 @@ console.log("current_profile_user-->",currUser)
 
 const [statsData,setStatsData]=useState([])
 const [totalAccuracy,setTotalAccuracy]=useState(0);
-const [userlevel,setUserlevel]=useState("");
+const [userlevel,setUserlevel]=useState("novice");
 const progressWidth=useRef('')
 
 async function loadStatsfunc(userId){
@@ -36,7 +36,11 @@ async function loadStatsfunc(userId){
   let sum=getstatsData.statsData.reduce((acc,curr)=>{
     return acc+ curr.accuracy
   },0)
-  sum=sum/getstatsData.statsData.length;
+
+  if(sum!=0){ 
+      sum=sum/getstatsData.statsData.length;
+  }
+
   setTotalAccuracy(sum)
   if(sum<40){
     setUserlevel("Novice")
@@ -55,8 +59,18 @@ useEffect(()=>{
    
  },[currUser])
 
+ const [selectDays,setSelectDays]=useState(4)
  
-
+ function selectDaysFunc(e){
+      setSelectDays(e.target.value)
+      if(e.target.value=="ten"){
+        setSelectDays(10)
+      }else if(e.target.value=="week"){
+        setSelectDays(7)
+      }else if(e.target.value=="allTime"){
+        setSelectDays(Infinity)
+      }
+ }
 
   return (
         <>
@@ -74,8 +88,15 @@ useEffect(()=>{
                           <h1>Your Level: <span className='text-green-400 font-bold'>{userlevel}</span></h1>
                     </div>
                     <div className='felx flex-col  rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3'>
-                        <h2 className=' p-0 my-2 font-bold text-green-500 text-[1.5rem] sm:text-[1.6rem]'>Your activity</h2>
-                        
+                        <div className='flex justify-between items-center'>
+                        <h2 className=' p-0 my-2 font-bold text-green-500 text-[1.3rem] sm:text-[1.6rem]'>Your activity</h2>
+                          <select onChange={selectDaysFunc}   className='bg-gray-950  border-none outline-none sm:w-[7.5rem] w-[6rem] h-[2rem]'>
+                             <option >Choose</option>
+                             <option  value={"week"}>Last 7 days</option>
+                             <option  value={"ten"}>Last 10 days</option>
+                             <option  value={"allTime"}>All time</option>
+                          </select>
+                        </div>
                             {
                                (!statsData?.length)
                                ?
@@ -83,17 +104,20 @@ useEffect(()=>{
                                     {/* <p className={`${loading?"":"hidden"}`}> </p> */}
                                     <ScaleLoader  color="#731273" size={20} />
                                 </div>
-                               :statsData?.map((elem)=>{
+                               :statsData?.slice(0,selectDays).map((elem,ind)=>{
                                 return(
                                   <>
                                     <div className='border p-3 m-2'>
-                                      <h1 className='flex'> <BsCalendar2Check className='text-[1.2rem] mr-2'/> {elem.date}</h1>
-                                      <h1>Completed task: {elem.taskCompleted}</h1>
-                                      <h1>Pending task: {elem.pendingTask}</h1>
-                                      <div className='flex items-center'>
-                                          <h1>Accuracy:</h1>
+                                      <div className='flex justify-between'>
+                                        <h1 className='mb-2 text-[0.9rem] sm:text-[1.2rem]'>Day: {ind+1}</h1>
+                                        <h1 className='flex mb-2 text-[0.7rem] sm:text-[1rem]'> <BsCalendar2Check className=' sm:text-[1.2rem] mr-2'/> {elem.date}</h1>
+                                      </div>
+                                      <h1 className='text-[0.8rem] sm:text-[1rem]'>Completed task: {elem.taskCompleted}</h1>
+                                      <h1 className='text-[0.8rem] sm:text-[1rem]'>Pending task: {elem.pendingTask}</h1>
+                                      <div className='flex items-center mt-4'>
+                                          <h1 className='text-[0.8rem] sm:text-[1rem]'>Accuracy:</h1>
                                           <p className='h-[1.5rem] m-2 w-[10rem] border flex items-center '>
-                                            <p style={{width:`${elem.accuracy}%`}}  className='progressWidth bg-green-500  h-[1.2rem] mr-2'></p> 
+                                            <p style={{width:`${elem.accuracy}%`}}  className='progressWidth bg-green-500  h-[1.2rem] '></p> 
                                           </p>
                                           <p className='text-[0.75rem]'>{elem.accuracy.toFixed(2)}%</p>
                                       </div>

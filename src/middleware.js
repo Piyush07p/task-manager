@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 export function middleware(request){
     const authToken=request.cookies.get('loginToken')?.value;
 
-    if(request.nextUrl.pathname==='/api/login'|| request.nextUrl.pathname==='/api/users'){
+    if(request.nextUrl.pathname==='/api/login'|| request.nextUrl.pathname==='/api/users'|| request.nextUrl.pathname==='/api/cron'){
         return 
     }
     
-    const notAccessRoute= request.nextUrl.pathname==='/login'||request.nextUrl.pathname==='/Signup';
+    const notAccessRoute= request.nextUrl.pathname==='/login'||request.nextUrl.pathname==='/Signup'||request.nextUrl.pathname==='/api/cron';
     // console.log("middleware called..")   
     if(notAccessRoute){
 
@@ -42,6 +42,7 @@ export const config={
         '/Signup',
         '/task',
         '/tasklist',
+        '/profile',
         '/profile/:path*',
         '/api/:path*'
     ]

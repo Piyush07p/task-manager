@@ -69,8 +69,12 @@ export async function addStats(statsObj){
 }
 
 export async function getStats(userId){
+   try {
     const result= await httpAxios
     .get(`/api/statsdata/${userId}`)
     .then((resp)=>resp.data)
     return result 
+   } catch (error) {
+      return error
+   }
 }

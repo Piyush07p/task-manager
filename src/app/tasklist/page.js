@@ -216,7 +216,7 @@ return (
                 :taskList.map((task)=>{
                   return(
                     <>
-                       <div className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
+                       <div style={{border:"2px solid rgba(109,105,105,0.5)"}} className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2 underline font-bold'>{task.title}</h1>
                            <p className='flex items-center'>

@@ -17,11 +17,12 @@ const Navbar = () => {
    const {currUser,setCurrUser}=useContext(UserContext)
    console.log("current_user2-->",currUser)
    const router=useRouter()
+
    async function doLogout(){
        
     try {
         const result =await logoutUser()
-        setCurrUser(undefined)
+        setCurrUser('')
         router.push('/login')
         // toast.success("logout successfull !!")
     } catch (error) {
@@ -48,7 +49,7 @@ const Navbar = () => {
                         {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
                         </li> */}
-                        <li className='group mx-3 sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1rem] sm:text-[1.2rem]  '>
+                        <li className='group  sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1rem] sm:text-[1.2rem]  '>
                             <Link href="/tasklist"><GrTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden transition duration-1000 ease-in-out   sm:group-hover:inline'>Show tasks</span></Link>
                         </li>
                         {
@@ -57,16 +58,16 @@ const Navbar = () => {
                             <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
                             <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName")).substring(0,8)}</Link>
                             </li>
-                            <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm  bg-gray-900 px-2 rounded-md py-1'>
+                            <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm hover:bg-red-600  bg-red-700 px-2 rounded-md py-1'>
                             <button  onClick={doLogout}>logout</button>
                             </li>
                            </>
                            :
                            <>
-                           <li className='mx-2 text-[0.8rem] sm:text-[1rem]   bg-gray-900 px-2 rounded-md py-1'>
+                           <li className='mx-2 text-[0.8rem] sm:text-[1rem] hover:bg-green-700   bg-green-600 px-2 rounded-md py-1'>
                            <Link href="/login">Login</Link>
                            </li>
-                           <li  className='mx-2 text-[0.8rem] sm:text-[1rem]   bg-gray-900 px-2 rounded-md py-1'>
+                           <li  className='mx-2 text-[0.8rem] sm:text-[1rem] hover:bg-green-700   bg-green-600 px-2 rounded-md py-1'>
                            <Link href="/Signup">Signup</Link>
                            </li>
                           </>
