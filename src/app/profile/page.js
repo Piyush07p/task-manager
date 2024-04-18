@@ -117,7 +117,7 @@ useEffect(()=>{
                                       <div className='flex items-center mt-4'>
                                           <h1 className='text-[0.8rem] sm:text-[1rem]'>Accuracy:</h1>
                                           <p className='h-[1.5rem] m-2 w-[10rem] border flex items-center '>
-                                            <p style={{width:`${elem.accuracy}%`}}  className='progressWidth bg-green-500  h-[1.2rem] '></p> 
+                                            <p style={{width:`${elem.accuracy}%`}}  className={`progressWidth ${elem.accuracy>70?"bg-green-600":elem.accuracy>40?"bg-green-400":"bg-red-400"}  h-[1.2rem]`}></p> 
                                           </p>
                                           <p className='text-[0.75rem]'>{elem.accuracy.toFixed(2)}%</p>
                                       </div>
