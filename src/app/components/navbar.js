@@ -39,7 +39,7 @@ const Navbar = () => {
         <nav className='flex items-center justify-between p-2 box-border bg-[#731273] w-[100%]'>
           
             <div className='flex items-center'>
-               <p className='text-[0.8rem] sm:text-[1.2rem]'>Tasks</p>
+               <p className='text-[0.8rem] sm:text-[1.2rem]'>Taskfreak</p>
             </div>
             <div>
                 <ul className='flex items-center  m-2'>
@@ -58,16 +58,16 @@ const Navbar = () => {
                             <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
                             <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName")).substring(0,8)}</Link>
                             </li>
-                            <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm hover:bg-red-600  bg-red-700 px-2 rounded-md py-1'>
+                            <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm  border-2 px-2 rounded-md py-1'>
                             <button  onClick={doLogout}>logout</button>
                             </li>
                            </>
                            :
                            <>
-                           <li className='mx-2 text-[0.8rem] sm:text-[1rem] hover:bg-green-700   bg-green-600 px-2 rounded-md py-1'>
+                           <li className='mx-2 text-[0.8rem] sm:text-[1rem] text-black font-semibold   bg-[white] px-2 rounded-md py-1'>
                            <Link href="/login">Login</Link>
                            </li>
-                           <li  className='mx-2 text-[0.8rem] sm:text-[1rem] hover:bg-green-700   bg-green-600 px-2 rounded-md py-1'>
+                           <li  className='mx-2 text-[0.8rem] sm:text-[1rem] box-border  border-2 px-2 rounded-md py-1'>
                            <Link href="/Signup">Signup</Link>
                            </li>
                           </>

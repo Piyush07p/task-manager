@@ -104,7 +104,7 @@ useEffect(()=>{
                                     {/* <p className={`${loading?"":"hidden"}`}> </p> */}
                                     <ScaleLoader  color="#731273" size={20} />
                                 </div>
-                               :statsData?.slice(0,selectDays).map((elem,ind)=>{
+                               :statsData?.reverse().slice(0,selectDays).map((elem,ind)=>{
                                 return(
                                   <>
                                     <div className='border p-3 m-2'>
