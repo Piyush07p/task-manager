@@ -125,6 +125,11 @@ const page = () => {
 //--------------------(add_stats)--------------------
 
  async function addStatsFunc(){
+  let conf=confirm("Are you sure ? You want to submit")
+  if(!conf){
+    setDeleteFlag(false)
+    return;
+  }
    const loggedUser=await currentUser();
    setFinalSubmit(false)
   const taskCompleted=completedTask();
@@ -232,7 +237,8 @@ return (
                            </p>
                           </div>
                           <p className='text-[0.7rem] md:text-[1rem] whitespace-pre-wrap'>{task.content}</p>
-                          <p className={`text-right text-[0.7rem] md:text-[1rem] ${task.status==="Important"?"text-yellow-300":(task.status==="completed")?"text-green-500":"text-red-500"}`}>Status: {task.status}</p>
+                      
+                          <p className={`text-right text-[0.7rem] md:text-[1rem] `}>Status: <span className={`${task.status==="Important"?"text-yellow-300":(task.status==="completed")?"text-green-500":"text-red-500"}`}>{task.status}</span></p>
                           <div className='flex items-center justify-between'>
                             <button onClick={()=>updateTaskFunc(task._id)} className={`text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 ${markasRead?" bg-green-900 ":"bg-green-600 "} rounded cursor-pointer p-1`}>Mark as completed</button>
                             <p className='text-right text-[0.5rem] sm:text-[0.7rem]'>{task.dateAdded}</p>
@@ -245,7 +251,7 @@ return (
           </div>
           <div className='flex justify-center'>
           {
-            finalSubmit?<button onClick={addStatsFunc} className='rounded bg-green-600 px-2 py-1 m-2'>final submit</button>:""
+            finalSubmit?<button onClick={addStatsFunc} className='rounded bg-green-600 px-2 py-1 m-2 text-[0.8rem] sm:text-[1rem]'>final submit</button>:""
           }
              
           </div>

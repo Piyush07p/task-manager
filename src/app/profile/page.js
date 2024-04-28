@@ -31,7 +31,7 @@ const progressWidth=useRef('')
 
 async function loadStatsfunc(userId){
   let getstatsData=await getStats(userId)
-  setStatsData([...getstatsData.statsData]);
+  setStatsData([...getstatsData.statsData].reverse());
   console.log("statsData-->",statsData)
   let sum=getstatsData.statsData.reduce((acc,curr)=>{
     return acc+ curr.accuracy
@@ -69,6 +69,8 @@ useEffect(()=>{
         setSelectDays(7)
       }else if(e.target.value=="allTime"){
         setSelectDays(Infinity)
+      }else{
+        setSelectDays(4)
       }
  }
 
@@ -90,8 +92,8 @@ useEffect(()=>{
                     <div className='felx flex-col  rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3'>
                         <div className='flex justify-between items-center'>
                         <h2 className=' p-0 my-2 font-bold text-green-500 text-[1.3rem] sm:text-[1.6rem]'>Your activity</h2>
-                          <select onChange={selectDaysFunc}   className='bg-gray-950  border-none outline-none sm:w-[7.5rem] w-[6rem] h-[2rem]'>
-                             <option >Choose</option>
+                          <select onChange={selectDaysFunc}   className='bg-white rounded text-black cursor-pointer border-none outline-none sm:w-[7.5rem] w-[6rem] h-[1.8rem]'>
+                             <option  value={"four"}>Days</option>
                              <option  value={"week"}>Last 7 days</option>
                              <option  value={"ten"}>Last 10 days</option>
                              <option  value={"allTime"}>All time</option>
@@ -104,12 +106,12 @@ useEffect(()=>{
                                     {/* <p className={`${loading?"":"hidden"}`}> </p> */}
                                     <ScaleLoader  color="#731273" size={20} />
                                 </div>
-                               :statsData?.reverse().slice(0,selectDays).map((elem,ind)=>{
+                               :statsData?.slice(0,selectDays).map((elem,ind)=>{
                                 return(
                                   <>
                                     <div className='border p-3 m-2'>
                                       <div className='flex justify-between'>
-                                        <h1 className='mb-2 text-[0.9rem] sm:text-[1.2rem]'>Day: {ind+1}</h1>
+                                        <h1 className='mb-2 text-[0.9rem] sm:text-[1.2rem]'>Day: {statsData.length-ind}</h1>
                                         <h1 className='flex mb-2 text-[0.7rem] sm:text-[1rem]'> <BsCalendar2Check className=' sm:text-[1.2rem] mr-2'/> {elem.date}</h1>
                                       </div>
                                       <h1 className='text-[0.8rem] sm:text-[1rem]'>Completed task: {elem.taskCompleted}</h1>
