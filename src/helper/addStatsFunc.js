@@ -1,10 +1,13 @@
+"use client"
 import UserContext from '@/context/userContext'
 import React, { useContext, useEffect, useState } from 'react'
 import {addStats} from '@/services/taskService'
+import { createDb } from '@/db/connectDb';
 
-export default async function addStatsFunc(){
-    const context=useContext(UserContext);
 
+export  async function addStatsFunc(){
+    // const context=useContext(UserContext);
+    await createDb();
     //  const loggedUser=await currentUser();
     //  setFinalSubmit(false)
     // const taskCompleted=completedTask();
@@ -24,3 +27,4 @@ export default async function addStatsFunc(){
       console.log("Error_in_addStats-->",error)
     }
    }
+
