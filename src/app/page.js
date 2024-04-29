@@ -11,10 +11,10 @@ export default function Home() {
           <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-8 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[90%] sm:w-[80%] md:w-[50%] mt-10  items-center justify-between">
             <h1 className="text-[2rem] mx-3 my-2">Features</h1>
              <ul className=""> 
-                <p className="flex w-full py-1"><LiaHandPointRight className="text-[1.2rem] mx-2"/>Create and modify daily tasks effortlessly on taskfreak.</p>
-                <p className="flex w-full py-1"><LiaHandPointRight className="text-[1.2rem] mx-2"/>Track your task status (pending,important,completed) and set tasks to be completed.</p>
-                <p className="flex w-full py-1"><LiaHandPointRight className="text-[1.2rem] mx-2"/>Track your daily task performance accuracy.</p>
-                <p className="flex w-full py-1"><LiaHandPointRight className="text-[1.2rem] mx-2"/>Get your overall accuracy based on your performance.</p>
+                <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Create and modify daily tasks effortlessly on taskfreak.</p>
+                <p className="flex w-full  py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Track your task status (pending,important,completed) and set tasks to be completed.</p>
+                <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Track your daily task performance accuracy.</p>
+                <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Get your overall accuracy based on your performance.</p>
 
              </ul>
           </div>
