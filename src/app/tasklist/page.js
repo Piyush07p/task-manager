@@ -260,4 +260,4 @@ return (
   )
 }
 
-export default page
+export  default page
