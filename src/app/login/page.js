@@ -32,7 +32,7 @@ const [loginLoader,setLoginLoader]=useState(false)
 const {loadUser}=useContext(UserContext)
 
 // ----------------------(Login_handler)--------------------
-//------------------------(           )--------------------
+//-----------------------(            )--------------------
 
   async function handleLogin(e){
     e.preventDefault();
@@ -67,10 +67,10 @@ const {loadUser}=useContext(UserContext)
   }
   return (
     <>
-        <section className='flex justify-center pt-[5rem] h-[100vh] p-10'>
+        <section className='flex  w-full  justify-center pt-[5rem] py-4  px-10'>
           <ToastContainer/>
           
-            <form method='POST' className=' w-[100%] rounded-xl border-[var(--border1)] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[17.5rem] md:h-[19rem]' >
+            <form method='POST' className='  w-[100%] rounded-xl border-[var(--border1)] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[17.5rem] md:h-[19rem]' >
 
                     <div>
                         <label> <MdOutlineEmail style={{display:"inline-block",marginRight:"0.5rem"}}/> Email</label><br/>
@@ -101,11 +101,15 @@ const {loadUser}=useContext(UserContext)
 
                   
             </form>
-            
-
 
      </section>
-    
+     <div className='flex justify-center w-full px-10 pb-10'>
+        <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-4 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[100%] md:w-[50%] sm:w-[65%] mt-10 flex-col items-center justify-center">
+             <h1 className='text-[1.2rem] mb-4'>Login with this credentails for demo</h1>
+              <p className="flex"><span className='text-green-400'>Email</span> : demouser22@gmail.com</p>
+              <p className="flex"><span className='text-green-400'>Password</span>  : demouser22</p>
+          </div>
+     </div>
         
     </>
   )
