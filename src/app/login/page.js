@@ -106,8 +106,8 @@ const {loadUser}=useContext(UserContext)
      <div className='flex justify-center w-full px-10 pb-10'>
         <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-4 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[100%] md:w-[50%] sm:w-[65%] mt-10 flex-col items-center justify-center">
              <h1 className='text-[1.2rem] mb-4'>Login with this credentails for demo</h1>
-              <p className="flex"><span className='text-green-400'>Email</span> : demouser22@gmail.com</p>
-              <p className="flex"><span className='text-green-400'>Password</span>  : demouser22</p>
+              <p className="flex"><span className='border px-2 rounded'>Email</span> : demouser22@gmail.com</p>
+              <p className="flex"><span className='border px-2 rounded'>Password</span>  : demouser22</p>
           </div>
      </div>
         
