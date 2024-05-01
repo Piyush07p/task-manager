@@ -42,7 +42,7 @@ const Navbar = () => {
                <p className='text-[0.8rem] sm:text-[1.2rem]'>Taskfreak</p>
             </div>
             <div>
-                <ul className='flex items-center  m-1'>
+                <ul className='flex items-center text-white  m-1'>
                         <li className='group mx-3 sm:w-[5rem]  sm:mx-2 navli   text-[1.2rem] sm:text-[1.2rem]  '>
                             <Link href="/"><FiHome style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline  text-[0.9rem]'>Home</span></Link>
                         </li>
