@@ -8,12 +8,11 @@ import moment from "moment";
 
 export async function GET(request){
 
-      await createDb();
+      // await createDb();
       const allUsers=await userModel.find({});
       let userid=allUsers.map((user)=>user._id)
       console.log(userid);
-      let statsDataArr=[];
-
+    
       userid.forEach(async(id,ind)=>{
          let taskData=await taskModel.find({userId:id});
          
