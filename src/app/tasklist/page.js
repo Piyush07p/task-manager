@@ -179,7 +179,7 @@ return (
     {
       (hidePopup)?<Update/>:""
     }
-      <section className='p-3flex flex-col'>
+      <section className='p-3 text-white flex flex-col'>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
           <div className='flex justify-center  '>
             <h2 className='rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>

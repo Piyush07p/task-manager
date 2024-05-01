@@ -54,7 +54,7 @@ const page = () => {
     }
  return(
     <>
-     <section className='flex justify-center pt-[5rem] h-[100vh] p-10'>
+     <section className='flex text-white justify-center pt-[5rem] h-[100vh] p-10'>
           <ToastContainer/>
             <form method='POST' className='bg-[#272727] rounded-2xl w-[100%] md:w-[60%] lg:w-[50%] sm:w-[65%] p-4 h-[24rem]' >
                     <div>

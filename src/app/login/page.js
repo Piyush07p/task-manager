@@ -67,7 +67,7 @@ const {loadUser}=useContext(UserContext)
   }
   return (
     <>
-        <section className='flex  w-full  justify-center pt-[5rem] py-4  px-10'>
+        <section className='flex text-white  w-full  justify-center pt-[5rem] py-4  px-10'>
           <ToastContainer/>
           
             <form method='POST' className='  w-[100%] rounded-xl border-[var(--border1)] md:w-[50%] sm:w-[65%] bg-[#272727] p-4 h-[17.5rem] md:h-[19rem]' >
@@ -103,7 +103,7 @@ const {loadUser}=useContext(UserContext)
             </form>
 
      </section>
-     <div className='flex justify-center w-full px-10 pb-10'>
+     <div className='flex text-white justify-center w-full px-10 pb-10'>
         <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-4 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[100%] md:w-[50%] sm:w-[65%] mt-10 flex-col items-center justify-center">
              <h1 className='text-[1.2rem] mb-4'>Login with this credentails for demo</h1>
               <p className="flex"><span className='border px-2 rounded'>Email</span> : demouser22@gmail.com</p>

@@ -76,7 +76,7 @@ useEffect(()=>{
 
   return (
         <>
-            <section className='p-3 flex flex-col items-center '>
+            <section className='p-3 text-white flex flex-col items-center '>
                <h1 className='text-xl my-6'>User Profile</h1>
                <div className=' flex flex-col items-center w-[100%]'>
                     <div className='flex flex-col  sm:flex-row justify-between rounded-md items-center border w-[95%] sm:w-[75%] md:w-[60%] p-3 my-2'>

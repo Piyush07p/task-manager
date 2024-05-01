@@ -56,7 +56,7 @@ const page = () => {
    
   return (
     <>
-        <section className='p-2 flex flex-col items-center  '>
+        <section className='p-2 text-white flex flex-col items-center  '>
             <ToastContainer />
               <div className=' mt-3 ' >
                 <Image alt='image' className='w-[16rem] sm:w-[20rem]' src={svg}/>
