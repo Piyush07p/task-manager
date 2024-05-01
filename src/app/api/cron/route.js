@@ -6,7 +6,7 @@ import { taskModel } from "@/models/task";
 import { createDb } from "@/db/connectDb";
 import moment from "moment";
 
-export async function POST(request){
+export async function GET(request){
 
        await createDb();
       const allUsers=await userModel.find({});
