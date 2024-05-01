@@ -26,7 +26,7 @@ const Update = () => {
         setHidePopup(false)
     }
   return (
-      <section className='w-[100%] my-2  flex justify-center '>
+      <section className='w-[100%] my-2 text-white  flex justify-center '>
         <div className='transition duration-200 border fixed bg-[#121216] text-[0.8rem]  rounded-md p-3 w-[90%] sm:w-[65%] md:w-[55%] md:text-[1rem]'>
           <h1 className='font-bold text-[1rem]'>Edit your task</h1> <br/>
           <form method='PUT'>

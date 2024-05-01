@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <>
     
-        <nav className='flex items-center justify-between p-2 box-border bg-[#731273] w-[100%]'>
+        <nav className='flex items-center text-white justify-between p-2 box-border bg-[#731273] w-[100%]'>
           
             <div className='flex items-center'>
                <p className='text-[0.8rem] sm:text-[1.2rem]'>Taskfreak</p>
