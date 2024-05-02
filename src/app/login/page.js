@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 
 import { ClipLoader } from 'react-spinners';
+import { MdLogin } from "react-icons/md";
+
 
 
 //icons
@@ -104,10 +106,10 @@ const {loadUser}=useContext(UserContext)
 
      </section>
      <div className='flex text-white justify-center w-full px-10 pb-10'>
-        <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-4 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[100%] md:w-[50%] sm:w-[65%] mt-10 flex-col items-center justify-center">
-             <h1 className='text-[1.2rem] mb-4'>Login with this credentails for demo</h1>
-              <p className="flex"><span className='border px-2 rounded'>Email</span> : demouser22@gmail.com</p>
-              <p className="flex"><span className='border px-2 rounded'>Password</span>  : demouser22</p>
+        <div  className="bg-[#272727] py-4 px-4 rounded-xl text-[0.8rem] sm:text-[1rem]  w-[100%] md:w-[50%] sm:w-[65%] mt-10 flex-col items-center justify-center">
+             <h1 className='text-[1.2rem] mb-4'><MdLogin style={{display:"inline-block",marginRight:"1rem"}}/><span>Login with below Email for demo</span></h1>
+              <p className="flex my-2">Email : <span className='border px-2 rounded'>demouser22@gmail.com</span> </p>
+              <p className="flex">Password : <span className='border px-2 rounded'> demouser22</span></p>
           </div>
      </div>
         

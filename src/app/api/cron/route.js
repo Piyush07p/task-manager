@@ -26,8 +26,9 @@ export async function GET(request){
             pendingTask:taskData.length-filterData.length,
             date:moment().format("Do MMMM YY"),
             accuracy:(filterData.length/(taskData.length))*100
-        }
-          if(filterData.length>0){
+          }
+          
+        if(filterData.length>0){
             const {userId,taskCompleted,pendingTask,date,accuracy}=statsObj;
             const stats=await statsModel.create({
                 userId,
