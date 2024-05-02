@@ -95,9 +95,9 @@ const page = () => {
                            taskArray?.map((elem,ind)=>{
                             return(
                                 <>
-                                    <li className="rounded-md py-1 px-4 my-2 items-center min-w-[6.5rem] sm:min-w-[9rem] m-2 bg-[#272727] flex justify-between">
-                                        <span>{elem}</span>
-                                        <span><MdDelete onClick={()=>deleteTask(ind)} style={{cursor:"pointer"}}/></span>
+                                    <li className="rounded-md py-1 px-2 my-2 flex-wrap items-center min-w-[6.5rem] sm:min-w-[9rem] m-2 bg-[#272727] flex justify-between">
+                                        <span className="whitespace-break-spaces	 ">{elem}</span>
+                                        <span><MdDelete onClick={()=>deleteTask(ind)} style={{cursor:"pointer",marginLeft:"0.5rem"}}/></span>
                                     </li>
 
                                 </>
@@ -107,8 +107,8 @@ const page = () => {
                   </ul>
             </div>
         </div>  
-        <div  style={{border:"1px solid rgba(109,105,105,0.5)"}} className="w-[95%] sm:w-[60%] h-[13rem] py-2">
-            <div className="h-[50%] flex flex-col justify-center items-center py-2">
+        <div  style={{border:"1px solid rgba(109,105,105,0.5)"}} className="w-[95%] sm:w-[60%] py-4">
+            <div className=" flex flex-col justify-center items-center py-2">
                 <p className="mt-4">Double click on the button</p>
                  <ul className="m-4 flex flex-wrap">
                         {
@@ -126,7 +126,7 @@ const page = () => {
                         }
                  </ul>
             </div>
-            <div className="h-[50%] flex justify-center items-center">
+            <div className=" flex justify-center items-center">
                  <button className=" px-4 py-1 bg-green-600 rounded" onClick={getRandomTask} >Get Random Tasks</button>
             </div>
         </div>
