@@ -25,6 +25,13 @@ export default function Home() {
               <Link href="/task">Add Task</Link>
             </button>
           </div>
+
+          <div style={{border:"1px solid rgba(109,105,105,0.5)"}} className="py-8 px-2 rounded-md text-[0.8rem] sm:text-[1rem]  w-[90%] sm:w-[80%] md:w-[50%] mt-10 flex items-center justify-between">
+             <p className="flex"> <GoPencil className="text-[1.3rem] mx-2"/>Choose Random Tasks</p>
+            <button className="  w-[6rem]  p-2 hover:bg-green-700 bg-green-600 rounded ">
+              <Link href="/challenges">Choose</Link>
+            </button>
+          </div>
     </main>
   );
 }
