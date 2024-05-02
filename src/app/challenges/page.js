@@ -6,29 +6,31 @@ import { ClipLoader } from 'react-spinners';
 
 const page = () => {
 
-    const getLocalStorageData=()=>{
-        let data=localStorage.getItem("storedTaskArr");
-        if(data){
-            return JSON.parse(localStorage.getItem("storedTaskArr"))
-        }else{
-            return []
-        }
-    }
+    // const getLocalStorageData=()=>{
+    //     let data=localStorage.getItem("storedTaskArr");
+    //     if(data){
+    //         return JSON.parse(localStorage.getItem("storedTaskArr"))
+    //     }else{
+    //         return []
+    //     }
+    // }
     const [task,setTask]=useState('')
-    const [taskArray,setTaskArray]=useState(getLocalStorageData())
+    const [taskArray,setTaskArray]=useState([])
     const [loader,setLoader]=useState(false)
    function addTask(){
     setTaskArray([...taskArray,task])
      setTask('')
    }
+
    const deleteTask=(id)=>{
       const updateTasks=taskArray.filter((elem,ind)=>{
         return ind!=id;
       })
       setTaskArray(updateTasks)
    }
+
    useEffect(()=>{
-    localStorage.setItem("storedTaskArr",JSON.stringify(taskArray))
+    // localStorage.setItem("storedTaskArr",JSON.stringify(taskArray))
    },[taskArray])
 
     const taskRef=useRef('')
