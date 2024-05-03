@@ -13,6 +13,20 @@ export async function addTask(task){
     }
 }
 
+// ------------------(to_add_random_task)---------------------
+
+export async function addRandomTask(randomTask){
+  try {
+    let result= await httpAxios.post('/api/tasks/randomTask',randomTask)
+    .then((resp)=> resp.data)
+    console.log("taskService--> ",result);
+    return result;
+  } catch (error) {
+      console.log("taskServiceError--> ",error);
+      return error
+  }
+}
+
 export async function getTaskList(userId){
     try {
 
