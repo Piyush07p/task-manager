@@ -2,7 +2,7 @@
 
 import React, { useState,useEffect } from 'react'
 import Image from "next/image"; 
-import svg from '../assets/taskpageImg.svg'
+import svg from '../assets/notes_svg.svg'
 import { createNotes } from '@/services/notesService';
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -55,7 +55,7 @@ const page = () => {
         <section className='p-2 text-white flex flex-col items-center  '>
             <ToastContainer />
               <div className=' mt-3 ' >
-                <Image alt='image' className='w-[16rem] sm:w-[20rem]' src={svg}/>
+                <Image alt='image' className='w-[16rem] sm:w-[20rem] h-[20rem]' src={svg}/>
               </div>
               <div className=' p-4 w-[95%] sm:w-[60%] md:w-[50%]  my-2 text-black'>
                 <h1 className='text-white font-bold mb-2'>Create notes here...</h1>

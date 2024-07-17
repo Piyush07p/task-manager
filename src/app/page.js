@@ -15,6 +15,8 @@ export default function Home() {
                 <p className="flex w-full  py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Track your task status (pending,important,completed) and set tasks to be completed.</p>
                 <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Track your daily task performance accuracy.</p>
                 <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Get your overall accuracy based on your performance.</p>
+                <p className="flex w-full py-1"><span><LiaHandPointRight className="text-[1.2rem]  mx-2"/></span>Create and modify notes </p>
+
 
              </ul>
           </div>
