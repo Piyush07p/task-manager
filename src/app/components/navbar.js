@@ -52,6 +52,9 @@ const Navbar = () => {
                         <li className='group  sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
                             <Link href="/tasklist"><MdAddTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline text-[0.9rem]  sm:group-hover:inline'>Show tasks</span></Link>
                         </li>
+                        <li className='group  sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
+                            <Link href="/noteslist"><MdAddTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline text-[0.9rem]  sm:group-hover:inline'>Notes</span></Link>
+                        </li>
                         {
                             (currUser)?  
                            <>

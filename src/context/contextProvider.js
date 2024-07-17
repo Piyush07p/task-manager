@@ -8,6 +8,7 @@ const ContextProvider = ({children}) => {
     const [currUser,setCurrUser]=useState("");
     const [activeData,setActiveData]=useState("")
     const [taskId,setTaskid]=useState({})
+    const [notesId,setNotesid]=useState({});
     const [hidePopup,setHidePopup]=useState(false);
     const [markasRead,setMarkAsRead]=useState(false);
     const [completedTaskData,setCompletedTaskData]=useState("")
@@ -31,8 +32,9 @@ const ContextProvider = ({children}) => {
    useEffect(()=>{
     loadUser()
    },[])
-  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,taskId,setTaskid,hidePopup,setHidePopup,
-  markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData,loadUser}}>
+  return <UserContext.Provider value={{currUser,setCurrUser,activeData,setActiveData,
+        taskId,setTaskid,notesId,setNotesid,hidePopup,setHidePopup,
+        markasRead,setMarkAsRead,completedTaskData,setCompletedTaskData,loadUser}}>
        {children}
   </UserContext.Provider>
 }

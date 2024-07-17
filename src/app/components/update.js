@@ -1,22 +1,40 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState ,useContext} from 'react'
 import { editTask } from '@/services/taskService'
+import {editNotes} from '@/services/notesService'
 import UserContext from '@/context/userContext'
 
 const Update = () => {
-  const {taskId,setTaskid,hidePopup,setHidePopup}=useContext(UserContext)
+  const {taskId,notesId,hidePopup,setHidePopup}=useContext(UserContext)
+  const [udpateData,setUpdateData]=useState({})
 
-     console.log("props-->",taskId)
-    const [udpateData,setUpdateData]=useState({
-        title:taskId.task_title,
-        description:taskId.task_content
-    })
-    const updateData=async (e)=>{
+    useEffect(()=>{
+        if(notesId.notes){
+            setUpdateData({
+                title:notesId.task_title,
+                description:notesId.task_content
+            }) 
+        }
+        else{
+            setUpdateData({
+                title:taskId.task_title,
+                description:taskId.task_content
+            }) 
+        }
+    },[])
+
+    const updateDataFunc=async (e)=>{
         e.preventDefault();
-        setHidePopup(false)
+        setHidePopup(false);
         try {
-             let resp=await editTask(taskId.task_id,udpateData);
+            if(notesId.notes){
+                console.log("-------(notesId)---------->",notesId)
+                let resp2=await editNotes(notesId.task_id,udpateData);
+            }
+            else{
+                let resp=await editTask(taskId.task_id,udpateData);
+            }
              window.location.reload()
         } catch (error) {
            console.log(error) 
@@ -41,7 +59,7 @@ const Update = () => {
                     ...udpateData,description:e.target.value
                 })
             }} className=' bg-[#272727] w-[90%]  px-2 md:w-[90%] h-[8rem]' value={udpateData.description}  name='description' type="text" placeholder='edit description'></textarea> <br/><br/>
-            <button onClick={updateData} className='bg-green-600 hover:bg-green-700 p-1 rounded-sm mr-2'>Update</button>
+            <button onClick={updateDataFunc} className='bg-green-600 hover:bg-green-700 p-1 rounded-sm mr-2'>Update</button>
             <button onClick={cancelPopup} className='bg-green-600  hover:bg-green-700 p-1 rounded-sm'>Cancel</button>
 
           </form>
