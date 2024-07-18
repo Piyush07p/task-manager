@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState,useEffect } from 'react'
 import Image from "next/image"; 
 import svg from '../assets/notes_svg.svg'
@@ -13,16 +12,16 @@ const page = () => {
           title:"",
           content:"",
           userId:"65bfe15b4e8941ff6607ef12"
-
    })
 
    const [taskLoader,setTaskLoader]=useState(false)
 
    const handleCreateNotes=async(event)=>{
+      
         event.preventDefault();
         setTaskLoader(true)
-        try {
-             
+        try { 
+
             const res=await createNotes(notesData)
            if(res.msg=="Fill all the fields"){
             toast.warning("Fields can't be empty !!",{
@@ -59,7 +58,7 @@ const page = () => {
               </div>
               <div className=' p-4 w-[95%] sm:w-[60%] md:w-[50%]  my-2 text-black'>
                 <h1 className='text-white font-bold mb-2'>Create notes here...</h1>
-                 <form className='w-[100%] sm:text-[1rem] text-white text-[0.7rem] '>
+                 <form onSubmit={handleCreateNotes} className='w-[100%] sm:text-[1rem] text-white text-[0.7rem] '>
                       <div className='w-[100%]'>
                         
                         <label>Enter title</label> <br/>
@@ -79,22 +78,9 @@ const page = () => {
                             })
                         }} value={notesData.content} className=' w-[100%] px-2 bg-[#272727] text-white h-[6.5rem] sm:h-[5.5rem]  ' type='text'></textarea> <br/><br/>
                       </div>
-                      {/* <div>
-                        <label>Status</label> <br/>
-                        <select required   placeholder='enter status'   onChange={(e)=>{
-                              setTaskData({
-                                ...taskData, 
-                                status:e.target.value
-                              })
-                          }} value={taskData.status} className=' w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
-                          <option >Choose</option>
-                          <option>pending</option>
-                          <option>Important</option>
-                        </select>
-                      </div> */}
+                      
                       <div>
-
-                         <button type='submit' className='bg-[#731273] w-[8rem] py-2 px-2 my-4 rounded-sm text-white' onClick={handleCreateNotes}>
+                         <button  className='bg-[#731273] w-[8rem] py-2 px-2 my-4 rounded-sm text-white' >
                             {
                             (taskLoader)? <ClipLoader color="#fff" size={22} />:"Create Note"
                             }

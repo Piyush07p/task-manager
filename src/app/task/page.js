@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState,useEffect } from 'react'
 import Image from "next/image"; 
 import svg from '../assets/taskpageImg.svg'
@@ -91,8 +90,8 @@ const page = () => {
                                 status:e.target.value
                               })
                           }} value={taskData.status} className=' w-[100%] px-2 bg-[#272727] h-8 sm:h-10'  type='text'> 
-                          <option >Choose</option>
-                          <option>pending</option>
+                          <option>Choose</option>
+                          <option>Pending</option>
                           <option>Important</option>
                         </select>
                       </div>
