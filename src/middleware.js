@@ -42,6 +42,7 @@ export const config={
         '/Signup',
         '/task',
         '/notes',
+        '/noteslist',
         '/tasklist',
         '/profile',
         '/profile/:path*',

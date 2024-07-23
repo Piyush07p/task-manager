@@ -44,22 +44,22 @@ const Navbar = () => {
             </div>
             <div>
                 <ul className='flex items-center text-white  m-1'>
-                        <li className='group mx-3 sm:w-[5rem]  sm:mx-2 navli   text-[1.2rem] sm:text-[1.2rem]  '>
+                        <li className='group mx-2 sm:w-[5rem]  sm:mx-2 navli   text-[1.2rem] sm:text-[1.2rem]  '>
                             <Link href="/"><FiHome style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline  text-[0.9rem]'>Home</span></Link>
                         </li>
                         {/* <li className='mx-1 sm:mx-2  text-[0.6rem] sm:text-[1rem]  '>
                         <Link href="/task">Add Task</Link>
                         </li> */}
-                        <li className='group  sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
+                        <li className='group  sm:w-[8rem] mx-2  sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
                             <Link href="/tasklist"><MdAddTask style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline text-[0.9rem]  sm:group-hover:inline'>Show tasks</span></Link>
                         </li>
-                        <li className='group  sm:w-[8rem]    sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
+                        <li className='group  sm:w-[8rem] mx-2  sm:hover:w-[8rem] sm:mx-2 navli text-[1.2rem] sm:text-[1.2rem]  '>
                             <Link href="/noteslist"><CgNotes style={{display:"inline-block",marginBottom:"0.3rem",marginRight:"0.2rem"}} /><span className='hidden sm:inline text-[0.9rem]  sm:group-hover:inline'>Notes</span></Link>
                         </li>
                         {
                             (currUser)?  
                            <>
-                            <li className='mx-3 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
+                            <li className='mx-2 sm:mx-2  text-[0.8rem] sm:text-[1rem]   font-bold '>
                             <Link href="/profile"><FaRegUser style={{display:"inline-block",marginBottom:"0.3rem"}}/> {JSON.parse(localStorage.getItem("userName")).substring(0,8)}</Link>
                             </li>
                             <li className='ml-2 sm:mx-2  text-[0.8rem] sm:text-[1rem]   shadow-sm  border-2 px-2 rounded-md py-1'>
@@ -68,12 +68,12 @@ const Navbar = () => {
                            </>
                            :
                            <>
-                           <li className='mx-2 text-[0.8rem] sm:text-[1rem] text-black font-semibold   bg-[white] px-2 rounded-md py-1'>
-                           <Link href="/login">Login</Link>
-                           </li>
-                           <li  className='mx-2 text-[0.8rem] sm:text-[1rem] box-border  border-2 px-2 rounded-md py-1'>
-                           <Link href="/Signup">Signup</Link>
-                           </li>
+                            <li className='mx-2 text-[0.8rem] sm:text-[1rem] text-black font-semibold   bg-[white] px-2 rounded-md py-1'>
+                            <Link href="/login">Login</Link>
+                            </li>
+                            <li  className='mx-2 text-[0.8rem] sm:text-[1rem] box-border  border-2 px-2 rounded-md py-1'>
+                            <Link href="/Signup">Signup</Link>
+                            </li>
                           </>
                         } 
                     
