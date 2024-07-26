@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 export const POST= async(request)=>{
     
         const {title, content, status}= await request.json();
-
+        console.log(status)
         if(!title|| !content || !status){
             return NextResponse.json({
                 msg:"Fill all the fields"

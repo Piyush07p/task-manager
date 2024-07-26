@@ -198,7 +198,7 @@ return (
                  </button>
                 
                   <button className=" p-1 text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded ">
-                     <Link href="/task">Add more tasks</Link>
+                     <Link href="/task">Add tasks</Link>
                   </button>
                 
                </div>
