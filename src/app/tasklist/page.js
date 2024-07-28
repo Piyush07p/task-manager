@@ -72,6 +72,10 @@ const page = () => {
 
 
  async function updateTaskFunc(task_id){
+    let conf=confirm("Are you sure ?")
+    if(!conf){
+       return
+    }
       try {
         const resp= await updateTask(task_id)
         setMarkAsRead(prevState=>!prevState)
@@ -104,24 +108,8 @@ const page = () => {
     })
     
   }
-  //----------------------------------------------
-  //----------------(setInterval)-----------------
-  //----------------------------------------------
+  
 
-  function setTimeUntil() {
-    const currTime = new Date();
-    const tenPM = new Date(currTime);
-    tenPM.setHours(23, 6, 0, 0); // Set hours to 22:00:00 (10 PM)
-    
-    let timeDiff = tenPM.getTime() - currTime.getTime();
-    if (timeDiff < 0) {
-        // If it's already past 10 PM for today, set it for tomorrow
-        tenPM.setDate(tenPM.getDate() + 1);
-        timeDiff = tenPM.getTime() - currTime.getTime();
-    }
-    
-    return timeDiff;
-}
 //--------------------(add_stats)--------------------
 
  async function addStatsFunc(){
@@ -165,10 +153,7 @@ useEffect(() => {
     setCompletedTaskData("completed")
   }
   
-  const interval = setInterval(scheduleFunc, setTimeUntil()); // Execute tick function every 1000 milliseconds (1 second)
-
-  // Return a cleanup function to clear the interval when the component unmounts
-  return () => clearInterval(interval);
+  
 }, []);
 
 
@@ -179,16 +164,18 @@ return (
     {
       (hidePopup)?<Update/>:""
     }
-      <section className='p-3 text-white flex flex-col'>
+      <section className='p-3 text-white flex flex-col '>
           <h1 className='font-bold text-xl my-3 text-center'>The listed tasks are below</h1>
-          <div className='flex justify-center  '>
-            <h2 className='rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Total tasks: {taskList.length}</h2>
-            <h2 className=' rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mx-10 my-3'>Completed tasks: {completedTask()} </h2>
+          <div className='w-full flex justify-center'>
+            <div className='flex justify-between  w-[95%] md:w-[60%] '>
+              <h2 className='rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 mr-2  my-3'>Total tasks: {taskList.length}</h2>
+              <h2 className=' rounded-md text-center text-[0.7rem] md:text-[1rem] border w-[11rem] p-1 ml-2  my-3'>Completed tasks: {completedTask()} </h2>
+            </div>
           </div>
           <ToastContainer/>  
           <div className='flex flex-col  items-center  justify-center'>
             
-               <div className='w-[85%]  md:w-[60%] flex justify-between items-center '>
+               <div className='w-[95%]  md:w-[60%] flex justify-between items-center '>
               
 
                  <button onClick={deleteAllTaskFunc} className='p-1 w-[7rem] text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded '>
@@ -203,11 +190,11 @@ return (
                 
                </div>
 
-               <div className='my-4 w-[85%] flex  md:w-[60%] items-center  justify-start'>
-               <BsCalendar2Check className='text-[1.2rem]'/>
-               <span className= 'text-[0.8rem] md:text-[1rem]  p-1'>
-               {moment().format('MMMM Do YYYY')}
-                </span>
+               <div className='my-4 w-[95%] flex  md:w-[60%] items-center  justify-start'>
+                <BsCalendar2Check className='text-[1.2rem]'/>
+                <span className= 'text-[0.8rem] md:text-[1rem]  p-1'>
+                {moment().format('MMMM Do YYYY')}
+                  </span>
                </div>
             
               {
@@ -221,7 +208,7 @@ return (
                 :taskList.map((task)=>{
                   return(
                     <>
-                       <div style={{border:"2px solid rgba(109,105,105,0.5)"}} className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
+                       <div style={{border:"2px solid rgba(109,105,105,0.5)"}} className={` p-2 w-[95%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2 underline font-bold'>{task.title}</h1>
                            <p className='flex items-center'>
@@ -240,7 +227,9 @@ return (
                       
                           <p className={`text-right text-[0.7rem] md:text-[1rem] `}>Status: <span className={`${task.status==="Important"?"text-yellow-300":(task.status==="completed")?"text-green-500":"text-red-500"}`}>{task.status}</span></p>
                           <div className='flex items-center justify-between'>
-                            <button onClick={()=>updateTaskFunc(task._id)} className={`text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 ${markasRead?" bg-green-900 ":"bg-green-600 "} rounded cursor-pointer p-1`}>Mark as completed</button>
+                            {
+                              (task.status=="pending")?<button onClick={()=>updateTaskFunc(task._id)} className={`text-right text-[0.7rem] md:text-[1rem] hover:bg-green-700 bg-green-600  rounded cursor-pointer p-1`}>Mark as completed</button>:""
+                            }
                             <p className='text-right text-[0.5rem] sm:text-[0.7rem]'>{task.dateAdded}</p>
                           </div>
                        </div>

@@ -135,7 +135,7 @@ return (
           <ToastContainer/>  
           <div className='flex flex-col  items-center  justify-center'>
             
-               <div className='w-[85%]  md:w-[60%] flex justify-between items-center '>
+               <div className='w-[95%]  md:w-[60%] flex justify-between items-center '>
               
 
                  <button onClick={deleteAllNotesFunc} className='p-1 w-[7.5rem] text-[0.8rem] md:text-[1rem] hover:bg-green-700 bg-green-600 rounded '>
@@ -150,7 +150,7 @@ return (
                 
                </div>
 
-               <div className='my-4 w-[85%] flex  md:w-[60%] items-center  justify-start'>
+               <div className='my-4 w-[95%] flex  md:w-[60%] items-center  justify-start'>
                <BsCalendar2Check className='text-[1.2rem]'/>
                <span className= 'text-[0.8rem] md:text-[1rem]  p-1'>
                {moment().format('MMMM Do YYYY')}
@@ -168,7 +168,7 @@ return (
                 :taskList.map((notes)=>{
                   return(
                     <>
-                       <div style={{border:"2px solid rgba(109,105,105,0.5)"}} className={` p-2 w-[85%]  md:w-[60%]  rounded-lg border m-3 `}>
+                       <div style={{border:"2px solid rgba(109,105,105,0.5)"}} className={` p-2 w-[95%]  md:w-[60%]  rounded-lg border m-3 `}>
                           <div className='flex justify-between text-[0.8rem] md:text-[1.2rem]'>
                            <h1 className=' my-2 underline font-bold'>{notes.title}</h1>
                            <p className='flex items-center'>
